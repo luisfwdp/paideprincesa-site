@@ -5,10 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Renderiza a logo. Usa o Custom Logo do WordPress (Aparencia > Personalizar
- * > Identidade do Site) quando configurado - assim o cliente troca a logo
- * sozinho, sem dev, assim que o arquivo oficial (SVG) estiver aprovado.
- * Enquanto isso, cai num simbolo provisorio (colete estilizado) + wordmark,
- * sem o perfil do Instagram embutido, conforme diretriz de marca.
+ * > Identidade do Site) quando o admin configurar um explicitamente - isso
+ * sempre tem prioridade. Por padrao, usa a arte oficial fornecida pelo
+ * cliente (recortada em assets/images/brand/, sem o perfil do Instagram
+ * embutido, conforme diretriz de marca): variante bordo para fundos claros
+ * ($theme = 'dark', usada no header) e variante creme para fundos escuros
+ * ($theme = 'light', usada no footer).
  */
 function ppf_render_logo( $theme = 'dark' ) {
 	if ( has_custom_logo() ) {
@@ -17,15 +19,11 @@ function ppf_render_logo( $theme = 'dark' ) {
 		echo '</span>';
 		return;
 	}
+
+	$image_file = 'light' === $theme ? 'logo-horizontal-cream.png' : 'logo-horizontal-burgundy.png';
 	?>
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ppf-logo ppf-logo--fallback ppf-logo--<?php echo esc_attr( $theme ); ?>" aria-label="<?php esc_attr_e( 'Pai de Princesa - pagina inicial', 'pai-de-princesa' ); ?>">
-		<svg class="ppf-logo-symbol" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			<path d="M20 8 L48 8 L50 22 L52 8 L80 8 L68 46 L68 92 L32 92 L32 46 Z" fill="currentColor" />
-			<circle cx="50" cy="34" r="4" fill="var(--ppf-blush,#fcf1ef)" />
-			<circle cx="50" cy="48" r="4" fill="var(--ppf-blush,#fcf1ef)" />
-			<circle cx="50" cy="62" r="4" fill="var(--ppf-blush,#fcf1ef)" />
-		</svg>
-		<span class="ppf-logo-wordmark"><?php esc_html_e( 'Pai de Princesa', 'pai-de-princesa' ); ?></span>
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ppf-logo ppf-logo--image ppf-logo--<?php echo esc_attr( $theme ); ?>" aria-label="<?php esc_attr_e( 'Pai de Princesa - pagina inicial', 'pai-de-princesa' ); ?>">
+		<img src="<?php echo esc_url( ppf_brand_image_url( $image_file ) ); ?>" alt="Pai de Princesa" width="193" height="30" loading="eager" decoding="async" />
 	</a>
 	<?php
 }

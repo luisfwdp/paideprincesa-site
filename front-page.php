@@ -10,6 +10,7 @@ get_header();
 <?php get_template_part( 'template-parts/responsible-people' ); ?>
 <?php get_template_part( 'template-parts/curriculum' ); ?>
 <?php get_template_part( 'template-parts/benefits' ); ?>
+<?php get_template_part( 'template-parts/marquee' ); ?>
 <?php get_template_part( 'template-parts/offer' ); ?>
 <?php get_template_part( 'template-parts/guarantee' ); ?>
 <?php get_template_part( 'template-parts/faq' ); ?>

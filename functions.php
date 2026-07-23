@@ -14,6 +14,7 @@ require_once PPF_THEME_DIR . '/inc/cpt-faq.php';
 require_once PPF_THEME_DIR . '/inc/cpt-module.php';
 require_once PPF_THEME_DIR . '/inc/theme-options.php';
 require_once PPF_THEME_DIR . '/inc/default-content.php';
+require_once PPF_THEME_DIR . '/inc/brand-assets.php';
 require_once PPF_THEME_DIR . '/inc/template-tags.php';
 require_once PPF_THEME_DIR . '/inc/seo.php';
 require_once PPF_THEME_DIR . '/inc/analytics.php';

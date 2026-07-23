@@ -61,6 +61,8 @@ function ppf_print_structured_data() {
 		if ( $logo ) {
 			$organization['logo'] = $logo;
 		}
+	} else {
+		$organization['logo'] = ppf_brand_image_url( 'logo-horizontal-burgundy.png' );
 	}
 
 	$website = array(

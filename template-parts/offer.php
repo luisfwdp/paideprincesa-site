@@ -16,7 +16,7 @@ $stack   = array(
 	<div class="ppf-container ppf-container--narrow">
 		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Comece hoje a participar com mais confianca.', 'pai-de-princesa' ); ?></h2>
 
-		<div class="ppf-offer-card">
+		<div class="ppf-offer-card js-reveal">
 			<ul class="ppf-offer-stack">
 				<?php foreach ( $stack as $item ) : ?>
 					<li><span aria-hidden="true">&#10003;</span> <?php echo esc_html( $item ); ?></li>

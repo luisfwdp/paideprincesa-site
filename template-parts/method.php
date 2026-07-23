@@ -16,7 +16,7 @@ $pillars = array(
 
 		<div class="ppf-method-grid">
 			<?php foreach ( $pillars as $index => $pillar ) : ?>
-				<div class="ppf-method-card">
+				<div class="ppf-method-card js-reveal">
 					<span class="ppf-method-number"><?php echo esc_html( str_pad( $index + 1, 2, '0', STR_PAD_LEFT ) ); ?></span>
 					<h3><?php echo esc_html( $pillar[0] ); ?></h3>
 					<p><?php echo esc_html( $pillar[1] ); ?></p>

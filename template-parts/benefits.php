@@ -17,7 +17,7 @@ $items = array(
 
 		<div class="ppf-benefits-grid">
 			<?php foreach ( $items as $item ) : ?>
-				<div class="ppf-benefit-item">
+				<div class="ppf-benefit-item js-reveal">
 					<span class="ppf-benefit-check" aria-hidden="true">&#10003;</span>
 					<p><?php echo esc_html( $item ); ?></p>
 				</div>

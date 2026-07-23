@@ -267,6 +267,51 @@
 	}
 
 	/* --------------------------------------------------------------------
+	 * Header ganha sombra depois de rolar a pagina
+	 * ------------------------------------------------------------------ */
+	function initHeaderScrollState() {
+		var header = document.getElementById( 'ppf-header' );
+		if ( ! header ) {
+			return;
+		}
+		function update() {
+			header.classList.toggle( 'is-scrolled', window.scrollY > 12 );
+		}
+		update();
+		window.addEventListener( 'scroll', update, { passive: true } );
+	}
+
+	/* --------------------------------------------------------------------
+	 * Reveal ao rolar: elementos marcados com .js-reveal ganham a classe
+	 * .is-visible quando entram na tela, disparando a transicao definida em
+	 * CSS. Respeita prefers-reduced-motion (o CSS zera a transicao nesse caso
+	 * via media query global, entao aqui so cuidamos de mostrar o elemento).
+	 * ------------------------------------------------------------------ */
+	function initScrollReveal() {
+		var items = document.querySelectorAll( '.js-reveal' );
+		if ( ! items.length ) {
+			return;
+		}
+		if ( ! ( 'IntersectionObserver' in window ) ) {
+			items.forEach( function ( el ) {
+				el.classList.add( 'is-visible' );
+			} );
+			return;
+		}
+		var observer = new IntersectionObserver( function ( entries, obs ) {
+			entries.forEach( function ( entry ) {
+				if ( entry.isIntersecting ) {
+					entry.target.classList.add( 'is-visible' );
+					obs.unobserve( entry.target );
+				}
+			} );
+		}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' } );
+		items.forEach( function ( el ) {
+			observer.observe( el );
+		} );
+	}
+
+	/* --------------------------------------------------------------------
 	 * Init
 	 * ------------------------------------------------------------------ */
 	document.addEventListener( 'DOMContentLoaded', function () {
@@ -274,6 +319,8 @@
 		initCampaignCountdown();
 		initAnalyticsBindings();
 		initCookieConsent();
+		initHeaderScrollState();
+		initScrollReveal();
 		pushEvent( 'page_view' );
 	} );
 })();

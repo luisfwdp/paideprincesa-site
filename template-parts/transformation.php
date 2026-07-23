@@ -22,7 +22,7 @@ $after = array(
 		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( "Do 'eu nao sei fazer' para o 'deixa comigo, filha'.", 'pai-de-princesa' ); ?></h2>
 
 		<div class="ppf-transformation-grid">
-			<div class="ppf-transformation-col ppf-transformation-col--before">
+			<div class="ppf-transformation-col ppf-transformation-col--before js-reveal">
 				<h3><?php esc_html_e( 'Antes', 'pai-de-princesa' ); ?></h3>
 				<ul>
 					<?php foreach ( $before as $item ) : ?>
@@ -30,7 +30,7 @@ $after = array(
 					<?php endforeach; ?>
 				</ul>
 			</div>
-			<div class="ppf-transformation-col ppf-transformation-col--after">
+			<div class="ppf-transformation-col ppf-transformation-col--after js-reveal">
 				<h3><?php esc_html_e( 'Depois', 'pai-de-princesa' ); ?></h3>
 				<ul>
 					<?php foreach ( $after as $item ) : ?>

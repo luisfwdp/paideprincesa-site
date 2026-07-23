@@ -19,7 +19,7 @@ $cards = array(
 
 		<div class="ppf-pain-grid">
 			<?php foreach ( $cards as $card ) : ?>
-				<div class="ppf-pain-card">
+				<div class="ppf-pain-card js-reveal">
 					<p>&ldquo;<?php echo esc_html( $card ); ?>&rdquo;</p>
 				</div>
 			<?php endforeach; ?>

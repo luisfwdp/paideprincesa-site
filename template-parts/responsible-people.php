@@ -34,7 +34,7 @@ if ( empty( $people ) ) {
 				$consent             = get_post_meta( $person->ID, 'image_consent_confirmed', true );
 				$has_photo           = $consent && has_post_thumbnail( $person );
 				?>
-				<article class="ppf-responsible-card ppf-responsible-card--<?php echo esc_attr( $style ); ?>">
+				<article class="ppf-responsible-card js-reveal ppf-responsible-card--<?php echo esc_attr( $style ); ?>">
 					<div class="ppf-responsible-photo">
 						<?php if ( $has_photo ) : ?>
 							<?php echo get_the_post_thumbnail( $person, 'ppf-portrait', array( 'alt' => esc_attr( get_the_title( $person ) ) ) ); ?>

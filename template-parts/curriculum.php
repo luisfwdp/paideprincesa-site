@@ -21,7 +21,7 @@ if ( empty( $modules ) ) {
 				$duration_label = get_post_meta( $module->ID, 'duration_label', true );
 				$is_locked      = '1' === get_post_meta( $module->ID, 'is_locked', true );
 				?>
-				<article class="ppf-module-card <?php echo $is_locked ? 'is-locked' : ''; ?>">
+				<article class="ppf-module-card js-reveal <?php echo $is_locked ? 'is-locked' : ''; ?>">
 					<div class="ppf-module-cover">
 						<?php if ( has_post_thumbnail( $module ) ) : ?>
 							<?php echo get_the_post_thumbnail( $module, 'ppf-cover', array( 'alt' => esc_attr( get_the_title( $module ) ) ) ); ?>

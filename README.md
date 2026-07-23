@@ -7,8 +7,10 @@ checkout e entrega de acesso próprios. Este repositório cuida só da página d
 
 ## O que está incluído
 
-- Tema WordPress nativo (`wp-content/themes/pai-de-princesa`), sem dependência de
-  page builders (Elementor etc.) nem de plugins de terceiros.
+- Tema WordPress nativo, sem dependência de page builders (Elementor etc.) nem de
+  plugins de terceiros. Os arquivos do tema ficam na **raiz deste repositório** de
+  propósito: assim o cPanel Git Version Control pode clonar direto dentro de
+  `wp-content/themes/pai-de-princesa` do site, sem pasta aninhada extra.
 - Todas as seções da landing page com o copy definido no briefing (hero, dores,
   transformação, método, "quem está por trás do curso", grade de módulos,
   benefícios, oferta, garantia, FAQ, CTA final).
@@ -49,7 +51,7 @@ ter que manter infraestrutura própria de vídeo/autenticação.
 ## Estrutura
 
 ```
-wp-content/themes/pai-de-princesa/
+(raiz do repositório = raiz do tema)
   style.css              cabeçalho obrigatório do tema (estilos reais ficam em assets/css)
   functions.php          bootstrap do tema
   header.php / footer.php / page.php / front-page.php / index.php / 404.php
@@ -77,8 +79,8 @@ Você precisa de PHP + MySQL + WordPress instalado (ex: via
 o tema usa CSS/JS puro.
 
 1. Suba um WordPress local.
-2. Copie (ou link simbólico) `wp-content/themes/pai-de-princesa` para dentro do
-   `wp-content/themes/` da sua instalação local.
+2. Copie (ou link simbólico) todo o conteúdo deste repositório para dentro de uma
+   pasta `wp-content/themes/pai-de-princesa/` da sua instalação local.
 3. Em **Aparência → Temas**, ative o tema "Pai de Princesa".
 4. A ativação cria automaticamente: páginas legais, FAQ, os dois responsáveis
    (Prity e Rodrigo) e os 6 módulos do curso.
@@ -125,26 +127,36 @@ site depois de marcar **"Autorização de imagem confirmada"** no responsável.
 ## Deploy via Git no cPanel (HostGator)
 
 O domínio `paideprincesa.com.br` já tem WordPress instalado. **Não** versionamos o
-WordPress inteiro aqui — só o tema. O clone deve apontar para a pasta do tema, não
-para a raiz do site.
+WordPress inteiro aqui — só o tema. Os arquivos do tema ficam na raiz deste
+repositório de propósito, então o **Repository Path** deve apontar direto para a
+pasta `wp-content/themes/pai-de-princesa` dentro do site — assim o `git clone` já
+entrega os arquivos no lugar certo, sem passo manual de copiar/mover nada.
 
 1. No GitHub, gere um token (Settings → Developer settings → Fine-grained tokens),
    com acesso somente a este repositório e permissão `Contents: Read-only`.
-2. No cPanel, abra **Git™ Version Control → Create**.
-3. Em **Repository Path**, aponte para a pasta do tema dentro do domínio, por exemplo:
-   `/home/SEU_USUARIO/paideprincesa.com.br/wp-content/themes/pai-de-princesa`
-4. Em **Clone URL**, use:
+   ⚠️ Se você já gerou um token e ele apareceu em algum print de tela ou foi
+   compartilhado, revogue-o e gere um novo — trate qualquer token exposto como
+   comprometido.
+2. Confirme o caminho absoluto do domínio no cPanel (**Domínios** → coluna
+   "Diretório" do `paideprincesa.com.br`). No seu caso é `/paideprincesa.com.br`
+   dentro do home do usuário, ou seja, o caminho completo é algo como
+   `/home1/SEU_USUARIO/paideprincesa.com.br`.
+3. No cPanel, abra **Git™ Version Control → Create**.
+4. Em **Repository Path**, use exatamente:
+   `/home1/SEU_USUARIO/paideprincesa.com.br/wp-content/themes/pai-de-princesa`
+   (troque `SEU_USUARIO` pelo usuário do cPanel — visível nos caminhos que já
+   apareceram na tela, ex: `trendm93`).
+5. Em **Clone URL**, use:
    `https://SEU_TOKEN@github.com/luisfwdp/paideprincesa-site.git`
-5. Como o repositório tem a pasta `wp-content/themes/pai-de-princesa` na raiz (e não
-   o tema na raiz do repo), depois do clone mova o conteúdo de
-   `wp-content/themes/pai-de-princesa/*` para a pasta apontada no passo 3 — ou
-   configure o Repository Path para clonar em uma pasta de staging e use o
-   **Deployment** do cPanel (arquivo `.cpanel.yml`, opcional) para copiar só a
-   subpasta do tema para o destino final.
-6. Em **Aparência → Temas** no wp-admin, ative "Pai de Princesa" (só precisa
-   ativar uma vez).
-7. A cada push novo no GitHub, volte no Git Version Control do cPanel e clique em
-   **Pull or Deploy → Update from Remote**.
+6. Se você já criou um repositório apontando para outra pasta (ex:
+   `/home1/SEU_USUARIO/repositories/paideprincesa-site`), abra-o em **Manage** e
+   apague-o (isso só remove a cópia local no servidor — não afeta o GitHub) e
+   recrie seguindo os passos 3–5 acima com o caminho correto.
+7. Em **Aparência → Temas** no wp-admin, ative "Pai de Princesa" (só precisa
+   ativar uma vez — isso também cria automaticamente as páginas legais, FAQ,
+   responsáveis e módulos).
+8. A cada push novo no GitHub, volte no Git Version Control do cPanel, abra o
+   repositório e clique em **Pull or Deploy → Update from Remote**.
 
 ## Pendências (dependem de informações reais)
 

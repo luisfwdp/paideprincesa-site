@@ -1,0 +1,12 @@
+/*
+Theme Name: Pai de Princesa
+Theme URI: https://paideprincesa.com.br
+Author: Pai de Princesa
+Description: Tema oficial da pagina de vendas do curso Pai de Princesa. O checkout e a area de membros ficam a cargo da plataforma de pagamento configurada (Kiwify ou Greenn).
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 8.0
+Text Domain: pai-de-princesa
+*/
+
+/* Os estilos reais do tema ficam em assets/css/style.css (carregado via wp_enqueue_style em inc/enqueue.php). Este arquivo existe apenas porque o WordPress exige um style.css com o cabecalho acima para reconhecer o tema. */

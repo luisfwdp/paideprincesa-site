@@ -12,7 +12,7 @@ $options = ppf_get_options();
 			<p class="ppf-hero-subtitle"><?php esc_html_e( 'O Pai de Princesa mostra, passo a passo, como cuidar do cabelo, escolher roupas, criar penteados simples e participar da rotina da sua filha com mais seguranca, carinho e confianca.', 'pai-de-princesa' ); ?></p>
 
 			<div class="ppf-hero-ctas">
-				<a <?php echo ppf_checkout_cta_attrs( 'hero_cta_click' ); ?>>
+				<a <?php echo ppf_checkout_cta_attrs( 'hero_cta_click', 'ppf-btn--pulse' ); ?>>
 					<?php esc_html_e( 'Quero cuidar com mais confianca', 'pai-de-princesa' ); ?>
 				</a>
 				<a href="#metodo" class="ppf-btn ppf-btn--ghost">

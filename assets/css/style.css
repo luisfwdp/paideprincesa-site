@@ -180,6 +180,13 @@ button { font-family: inherit; cursor: pointer; }
 
 .ppf-btn--small { padding: 0.6rem 1.1rem; font-size: 0.85rem; min-height: 38px; }
 
+.ppf-btn--pulse { animation: ppfPulseGlow 2.6s ease-in-out infinite; }
+.ppf-btn--pulse:hover { animation-play-state: paused; }
+@keyframes ppfPulseGlow {
+	0%, 100% { box-shadow: 0 12px 28px -16px rgba(127, 23, 50, 0.55); }
+	50% { box-shadow: 0 12px 34px -10px rgba(127, 23, 50, 0.85); }
+}
+
 /* ==========================================================================
    Media placeholder (used whenever a real photo hasn't been provided yet)
    ========================================================================== */
@@ -483,8 +490,32 @@ button { font-family: inherit; cursor: pointer; }
 .ppf-transformation-col--before { background: rgba(255, 255, 255, 0.05); }
 .ppf-transformation-col--after { background: linear-gradient(155deg, var(--ppf-burgundy), var(--ppf-wine)); }
 .ppf-transformation-col h3 { color: var(--ppf-gold-soft); font-family: var(--ppf-font-body); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.08em; }
-.ppf-transformation-col li { padding: 0.55rem 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.ppf-transformation-col li {
+	padding: 0.55rem 0 0.55rem 1.9rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	position: relative;
+}
 .ppf-transformation-col li:first-of-type { border-top: none; }
+.ppf-transformation-col li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.75rem;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 10px 10px;
+}
+.ppf-transformation-col--before li::before {
+	background-color: rgba(194, 65, 75, 0.18);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8c3cb' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='5' y1='5' x2='19' y2='19'/%3E%3Cline x1='19' y1='5' x2='5' y2='19'/%3E%3C/svg%3E");
+}
+.ppf-transformation-col--after li::before {
+	background-color: rgba(22, 132, 91, 0.25);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bdf0dc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4,13 9,18 20,6'/%3E%3C/svg%3E");
+}
 @media (max-width: 782px) {
 	.ppf-transformation-grid { grid-template-columns: 1fr; }
 }
@@ -652,6 +683,9 @@ button { font-family: inherit; cursor: pointer; }
 	position: absolute;
 	top: 0.75rem;
 	right: 0.75rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
 	background: var(--ppf-wine);
 	color: var(--ppf-ivory);
 	font-size: 0.7rem;
@@ -701,13 +735,29 @@ button { font-family: inherit; cursor: pointer; }
    Offer
    ========================================================================== */
 .ppf-offer-card {
+	position: relative;
 	background: var(--ppf-white);
-	border: 1px solid var(--ppf-border);
+	border: 2px solid var(--ppf-gold-soft);
 	border-radius: var(--ppf-radius);
-	box-shadow: var(--ppf-shadow);
-	padding: 2.5rem;
+	box-shadow: 0 30px 60px -28px rgba(127, 23, 50, 0.45);
+	padding: 2.75rem 2.5rem 2.5rem;
 	text-align: center;
-	margin-top: 2.5rem;
+	margin-top: 3.25rem;
+}
+.ppf-offer-ribbon {
+	position: absolute;
+	top: -18px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: linear-gradient(135deg, var(--ppf-gold), var(--ppf-gold-soft));
+	color: var(--ppf-wine);
+	font-weight: 800;
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 0.5rem 1.25rem;
+	border-radius: 999px;
+	box-shadow: 0 10px 20px -8px rgba(199, 161, 90, 0.6);
 }
 .ppf-offer-stack { text-align: left; max-width: 420px; margin: 0 auto 2rem; display: grid; gap: 0.6rem; }
 .ppf-offer-stack li { display: flex; gap: 0.6rem; }

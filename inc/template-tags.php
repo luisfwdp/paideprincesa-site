@@ -46,10 +46,11 @@ function ppf_whatsapp_url() {
  * e resolvida/ajustada em JS (main.js) para preservar UTMs e disparar o
  * evento correto no dataLayer - aqui deixamos apenas os data-attributes.
  */
-function ppf_checkout_cta_attrs( $event_name = 'section_cta_click' ) {
+function ppf_checkout_cta_attrs( $event_name = 'section_cta_click', $extra_class = '' ) {
 	return sprintf(
-		'href="%s" class="ppf-btn ppf-btn--primary js-checkout-cta" data-analytics-event="%s"',
+		'href="%s" class="ppf-btn ppf-btn--primary js-checkout-cta%s" data-analytics-event="%s"',
 		esc_url( ppf_get_active_checkout_url() ?: '#oferta' ),
+		$extra_class ? ' ' . esc_attr( $extra_class ) : '',
 		esc_attr( $event_name )
 	);
 }

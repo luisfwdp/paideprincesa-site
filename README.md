@@ -160,7 +160,9 @@ entrega os arquivos no lugar certo, sem passo manual de copiar/mover nada.
 
 ## Pendências (dependem de informações reais)
 
-- **Logo vetorial oficial** (SVG) — hoje o site usa um símbolo provisório.
+- **Logo vetorial oficial** (SVG) — a logo real já está em uso (extraída da
+  arte fornecida e recortada em `assets/images/brand/`), mas ainda em PNG.
+  Substitua por um SVG limpo quando o design vetorial final for aprovado.
 - **Fotos autorizadas** de Rodrigo Fabbris e Prity Santos (com consentimento
   registrado no checkbox do admin).
 - **Foto do hero** (pai penteando o cabelo da filha).

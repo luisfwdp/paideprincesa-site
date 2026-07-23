@@ -368,6 +368,22 @@ button { font-family: inherit; cursor: pointer; }
 	align-items: center;
 }
 .ppf-hero-title { font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem); }
+.ppf-text-accent {
+	color: var(--ppf-burgundy);
+	position: relative;
+}
+.ppf-text-accent::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0.05em;
+	height: 0.28em;
+	background: var(--ppf-gold-soft);
+	opacity: 0.55;
+	z-index: -1;
+	border-radius: 3px;
+}
 .ppf-hero-subtitle { font-size: 1.15rem; color: var(--ppf-muted); max-width: 560px; }
 .ppf-hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.75rem 0 1rem; }
 .ppf-hero-microcopy { font-size: 0.9rem; color: var(--ppf-muted); }
@@ -524,10 +540,25 @@ button { font-family: inherit; cursor: pointer; }
    Method
    ========================================================================== */
 .ppf-method-grid {
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1.25rem;
 	margin-top: 2.5rem;
+}
+.ppf-method-grid::before {
+	content: '';
+	position: absolute;
+	top: 2.65rem;
+	left: 12.5%;
+	right: 12.5%;
+	height: 2px;
+	background: repeating-linear-gradient(90deg, var(--ppf-gold-soft) 0 10px, transparent 10px 18px);
+	z-index: 0;
+}
+.ppf-method-card { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+	.ppf-method-grid::before { display: none; }
 }
 .ppf-method-card {
 	background: var(--ppf-white);
@@ -672,13 +703,40 @@ button { font-family: inherit; cursor: pointer; }
 .ppf-module-cover { position: relative; aspect-ratio: 16/10; }
 .ppf-module-cover img { width: 100%; height: 100%; object-fit: cover; }
 .ppf-module-cover-fallback {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+	border: none;
 	border-radius: 0;
 	min-height: unset;
-	font-family: var(--ppf-font-display);
-	font-size: 2rem;
-	border-width: 0 0 1.5px;
+	color: var(--ppf-ivory);
+	position: relative;
+	overflow: hidden;
+	justify-content: flex-end;
+	align-items: flex-start;
+	text-align: left;
+	padding: 1.25rem;
 }
+.ppf-module-cover-fallback-number {
+	font-family: var(--ppf-font-display);
+	font-size: 2.75rem;
+	line-height: 1;
+	color: rgba(255, 249, 246, 0.5);
+}
+.ppf-module-cover-fallback-label {
+	font-family: var(--ppf-font-body);
+	font-weight: 800;
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	margin-top: 0.35rem;
+}
+.ppf-module-cover-fallback--0 { background: linear-gradient(135deg, var(--ppf-burgundy), var(--ppf-wine)); }
+.ppf-module-cover-fallback--1 { background: linear-gradient(135deg, var(--ppf-rose), var(--ppf-burgundy-light)); }
+.ppf-module-cover-fallback--2 { background: linear-gradient(135deg, var(--ppf-gold), #a4793a); }
+.ppf-module-cover-fallback--3 { background: linear-gradient(135deg, var(--ppf-graphite), var(--ppf-wine-deep)); }
+.ppf-module-cover-fallback--4 { background: linear-gradient(135deg, var(--ppf-wine), var(--ppf-burgundy)); }
+.ppf-module-cover-fallback--5 { background: linear-gradient(135deg, var(--ppf-burgundy-light), var(--ppf-wine-deep)); }
 .ppf-module-badge {
 	position: absolute;
 	top: 0.75rem;
@@ -766,7 +824,17 @@ button { font-family: inherit; cursor: pointer; }
 .ppf-offer-price-main { font-family: var(--ppf-font-display); font-size: 2.25rem; color: var(--ppf-wine); margin-bottom: 0.2rem; }
 .ppf-offer-installments, .ppf-offer-duration { color: var(--ppf-muted); font-size: 0.9rem; }
 .ppf-offer-card .ppf-btn { margin-top: 1.5rem; width: 100%; max-width: 420px; }
-.ppf-offer-microcopy { font-size: 0.85rem; color: var(--ppf-muted); margin-top: 0.75rem; margin-bottom: 0; }
+.ppf-offer-microcopy {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+	font-size: 0.85rem;
+	color: var(--ppf-muted);
+	margin-top: 0.75rem;
+	margin-bottom: 0;
+}
+.ppf-offer-microcopy svg { color: var(--ppf-success); flex-shrink: 0; }
 
 /* ==========================================================================
    Guarantee

@@ -8,7 +8,11 @@ $options = ppf_get_options();
 	<div class="ppf-container ppf-hero-inner">
 		<div class="ppf-hero-content">
 			<p class="ppf-eyebrow"><?php esc_html_e( 'UM CURSO PARA PAIS QUE QUEREM PARTICIPAR DE VERDADE', 'pai-de-princesa' ); ?></p>
-			<h1 class="ppf-hero-title"><?php esc_html_e( 'Aprenda a cuidar dos pequenos detalhes da sua filha - mesmo que ninguem nunca tenha ensinado voce.', 'pai-de-princesa' ); ?></h1>
+			<h1 class="ppf-hero-title">
+				<?php esc_html_e( 'Aprenda a cuidar dos', 'pai-de-princesa' ); ?>
+				<span class="ppf-text-accent"><?php esc_html_e( 'pequenos detalhes', 'pai-de-princesa' ); ?></span>
+				<?php esc_html_e( 'da sua filha - mesmo que ninguem nunca tenha ensinado voce.', 'pai-de-princesa' ); ?>
+			</h1>
 			<p class="ppf-hero-subtitle"><?php esc_html_e( 'O Pai de Princesa mostra, passo a passo, como cuidar do cabelo, escolher roupas, criar penteados simples e participar da rotina da sua filha com mais seguranca, carinho e confianca.', 'pai-de-princesa' ); ?></p>
 
 			<div class="ppf-hero-ctas">

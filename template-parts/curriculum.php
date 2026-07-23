@@ -20,14 +20,18 @@ if ( empty( $modules ) ) {
 				$lessons_count  = get_post_meta( $module->ID, 'lessons_count', true );
 				$duration_label = get_post_meta( $module->ID, 'duration_label', true );
 				$is_locked      = '1' === get_post_meta( $module->ID, 'is_locked', true );
+				$title_parts    = explode( ' - ', get_the_title( $module ), 2 );
+				$short_label    = isset( $title_parts[1] ) ? $title_parts[1] : get_the_title( $module );
+				$variant        = $index % 6;
 				?>
 				<article class="ppf-module-card js-reveal <?php echo $is_locked ? 'is-locked' : ''; ?>">
 					<div class="ppf-module-cover">
 						<?php if ( has_post_thumbnail( $module ) ) : ?>
 							<?php echo get_the_post_thumbnail( $module, 'ppf-cover', array( 'alt' => esc_attr( get_the_title( $module ) ) ) ); ?>
 						<?php else : ?>
-							<div class="ppf-media-placeholder ppf-module-cover-fallback" aria-hidden="true">
-								<span><?php echo esc_html( str_pad( $index + 1, 2, '0', STR_PAD_LEFT ) ); ?></span>
+							<div class="ppf-module-cover-fallback ppf-module-cover-fallback--<?php echo esc_attr( $variant ); ?>" aria-hidden="true">
+								<span class="ppf-module-cover-fallback-number"><?php echo esc_html( str_pad( $index + 1, 2, '0', STR_PAD_LEFT ) ); ?></span>
+								<span class="ppf-module-cover-fallback-label"><?php echo esc_html( $short_label ); ?></span>
 							</div>
 						<?php endif; ?>
 						<?php if ( $is_locked ) : ?>

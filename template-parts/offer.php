@@ -42,7 +42,10 @@ $stack   = array(
 			<a <?php echo ppf_checkout_cta_attrs( 'begin_checkout' ); ?> id="ppf-offer-cta">
 				<?php esc_html_e( 'Quero entrar para o Pai de Princesa', 'pai-de-princesa' ); ?>
 			</a>
-			<p class="ppf-offer-microcopy"><?php esc_html_e( 'Voce sera direcionado para um ambiente seguro de pagamento.', 'pai-de-princesa' ); ?></p>
+			<p class="ppf-offer-microcopy">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+				<?php esc_html_e( 'Voce sera direcionado para um ambiente seguro de pagamento.', 'pai-de-princesa' ); ?>
+			</p>
 		</div>
 	</div>
 </section>

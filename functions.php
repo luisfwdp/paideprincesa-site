@@ -41,15 +41,21 @@ function ppf_theme_setup() {
 add_action( 'after_setup_theme', 'ppf_theme_setup' );
 
 /**
- * A pagina inicial estatica (front-page.php) e quem monta a landing page.
- * Garantimos que o WordPress use essa rota mesmo sem uma pagina "Inicio" configurada em Definicoes > Leitura.
+ * front-page.php monta a landing page e o WordPress o usa automaticamente na
+ * home, independente da opcao "Sua pagina inicial exibe" em Definicoes >
+ * Leitura - MAS somente quando show_on_front = 'posts' (padrao de instalacao
+ * nova), ou quando = 'page' com page_on_front apontando para uma pagina
+ * real. Se show_on_front ficar em 'page' sem page_on_front definido,
+ * is_front_page() passa a retornar falso e o WordPress cai no index.php
+ * (lista de posts). Aqui garantimos o estado valido em toda carga, sem
+ * depender de reativar o tema.
  */
-function ppf_force_front_page_template() {
-	if ( 'page' !== get_option( 'show_on_front' ) ) {
-		update_option( 'show_on_front', 'page' );
+function ppf_ensure_valid_front_page_setting() {
+	if ( 'page' === get_option( 'show_on_front' ) && ! get_option( 'page_on_front' ) ) {
+		update_option( 'show_on_front', 'posts' );
 	}
 }
-add_action( 'after_switch_theme', 'ppf_force_front_page_template' );
+add_action( 'after_setup_theme', 'ppf_ensure_valid_front_page_setting' );
 
 /**
  * Nunca deixar o WordPress ser indexado acidentalmente enquanto o site estiver em desenvolvimento.

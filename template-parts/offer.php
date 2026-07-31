@@ -5,16 +5,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 $options = ppf_get_options();
 $stack   = array(
 	__( 'Curso completo Pai de Princesa.', 'pai-de-princesa' ),
-	__( 'Acesso a todos os modulos.', 'pai-de-princesa' ),
-	__( 'Atualizacoes durante o periodo de acesso.', 'pai-de-princesa' ),
-	__( 'Materiais complementares confirmados.', 'pai-de-princesa' ),
-	__( 'Bonus confirmados.', 'pai-de-princesa' ),
-	__( 'Suporte, quando aplicavel.', 'pai-de-princesa' ),
+	__( '5 modulos principais.', 'pai-de-princesa' ),
+	__( 'Bonus Maquiagem de Princesa.', 'pai-de-princesa' ),
+	__( 'Orientacoes com Prity Santos.', 'pai-de-princesa' ),
+	__( 'Experiencias reais com Rodrigo Fabbris.', 'pai-de-princesa' ),
+	__( 'Participacao de profissionais convidadas.', 'pai-de-princesa' ),
+	__( 'Demonstracoes praticas.', 'pai-de-princesa' ),
+	__( 'Acesso pelo celular, tablet ou computador.', 'pai-de-princesa' ),
+	__( 'Conteudo para assistir no seu ritmo.', 'pai-de-princesa' ),
 );
 ?>
 <section class="ppf-section ppf-offer" id="oferta">
 	<div class="ppf-container ppf-container--narrow">
-		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Comece hoje a participar com mais confianca.', 'pai-de-princesa' ); ?></h2>
+		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'CONDICAO DE LANCAMENTO', 'pai-de-princesa' ); ?></p>
+		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Comece agora a participar com mais confianca.', 'pai-de-princesa' ); ?></h2>
+		<p class="ppf-section-lead ppf-section-lead--center"><?php esc_html_e( 'Tenha acesso ao conteudo completo do Pai de Princesa e aprenda, no seu ritmo, habilidades que podem fazer diferenca na rotina com sua filha.', 'pai-de-princesa' ); ?></p>
 
 		<div class="ppf-offer-panel js-reveal">
 			<div class="ppf-offer-blob" aria-hidden="true"></div>

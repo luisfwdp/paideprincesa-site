@@ -112,43 +112,52 @@ function ppf_seed_faq() {
 	}
 }
 
-function ppf_seed_people() {
-	if ( ! empty( get_posts( array( 'post_type' => 'ppf_person', 'posts_per_page' => 1, 'post_status' => 'any' ) ) ) ) {
-		return;
-	}
-
-	$people = array(
+/**
+ * Dados dos dois responsaveis (Prity Santos e Rodrigo Fabbris), conforme o
+ * roteiro oficial. Usado tanto no seed inicial quanto na migracao de copy
+ * (ppf_migrate_content_v3) para sites que ja tinham essas paginas ativas.
+ */
+function ppf_people_seed_data() {
+	return array(
 		array(
 			'title'   => 'Prity Santos',
-			'content' => 'Prity Santos e cabeleireira em Curitiba e uma das responsaveis pela parte pratica do Pai de Princesa. No curso, ela transforma conhecimentos que poderiam parecer complicados em orientacoes faceis de entender e aplicar, mesmo para um pai que nunca segurou uma escova, fez uma tranca ou escolheu produtos para o cabelo da filha. Com Prity, voce vai aprender cuidados essenciais, formas mais tranquilas de desembaracar, organizacao dos materiais e penteados possiveis para a rotina.',
+			'content' => 'Prity Santos e uma das responsaveis pela parte pratica do Pai de Princesa. No curso, ela transforma conhecimentos profissionais em orientacoes simples, pensadas para pais que nunca tiveram contato com esse tipo de cuidado. Prity ensina como escolher produtos, desembaracar o cabelo com mais tranquilidade, organizar os materiais e compreender os cuidados basicos para diferentes tipos de cabelo infantil.',
 			'meta'    => array(
 				'role_label'          => 'Responsavel pela orientacao pratica',
 				'occupation'          => 'Cabeleireira',
 				'city'                => 'Curitiba',
 				'subtitle'            => 'A tecnica explicada de maneira simples e acolhedora.',
-				'featured_quote'      => 'A missao dela no curso e mostrar que voce nao precisa ser profissional. Precisa apenas aprender o jeito certo de comecar.',
+				'featured_quote'      => 'Voce nao precisa ser profissional. Precisa apenas aprender o jeito certo de comecar.',
 				'instagram_primary'   => 'https://www.instagram.com/pritysantos/',
 				'instagram_secondary' => 'https://www.instagram.com/studiopritysantos/',
 				'cta_label'           => 'Conhecer Prity Santos',
+				'secondary_cta_label' => 'Conhecer o Studio Prity Santos',
 			),
 		),
 		array(
 			'title'   => 'Rodrigo Fabbris',
-			'content' => 'Rodrigo Fabbris e advogado e pai separado. Enquanto mantem sua rotina profissional, ele tambem participa ativamente dos compromissos da filha: escola, festas, apresentacoes, danca, eventos e todos os pequenos cuidados que fazem parte da vida de um pai presente. Como muitos pais, Rodrigo percebeu que amar e desejar participar nem sempre significa saber exatamente o que fazer. Foi dessa experiencia que surgiu uma das bases do Pai de Princesa: criar um caminho para que outros pais aprendam sem constrangimento, sem julgamentos e sem depender sempre de outra pessoa.',
+			'content' => 'Rodrigo Fabbris concilia sua rotina como advogado com os compromissos e os cuidados que fazem parte da vida de um pai presente. Escola, festas, danca, apresentacoes, eventos e os pequenos desafios cotidianos fazem parte dessa rotina. Como muitos pais, Rodrigo percebeu que amar e querer participar nao significa saber automaticamente como fazer tudo. Foi dessa experiencia que surgiu uma das bases do Pai de Princesa: criar um caminho para outros pais aprenderem sem constrangimento, sem julgamento e sem dependerem sempre de outra pessoa.',
 			'meta'    => array(
-				'role_label'          => 'Idealizador e representante da experiencia real dos pais',
+				'role_label'          => 'Advogado, pai separado e um dos idealizadores do Pai de Princesa',
 				'occupation'          => 'Advogado',
 				'city'                => 'Curitiba',
 				'subtitle'            => 'A experiencia real de quem concilia trabalho, responsabilidades e paternidade.',
-				'featured_quote'      => 'Rodrigo representa o pai que tem uma rotina corrida, mas entende que presenca tambem se constroi nos pequenos detalhes.',
+				'featured_quote'      => 'Presenca tambem se constroi nos pequenos detalhes.',
 				'instagram_primary'   => 'https://www.instagram.com/rodrigofabbris/',
 				'instagram_secondary' => 'https://www.instagram.com/rodrigofabbrisadvogado/',
 				'cta_label'           => 'Conhecer Rodrigo Fabbris',
+				'secondary_cta_label' => 'Ver perfil profissional',
 			),
 		),
 	);
+}
 
-	foreach ( $people as $index => $person ) {
+function ppf_seed_people() {
+	if ( ! empty( get_posts( array( 'post_type' => 'ppf_person', 'posts_per_page' => 1, 'post_status' => 'any' ) ) ) ) {
+		return;
+	}
+
+	foreach ( ppf_people_seed_data() as $index => $person ) {
 		$post_id = wp_insert_post( array(
 			'post_title'   => $person['title'],
 			'post_content' => $person['content'],
@@ -166,31 +175,156 @@ function ppf_seed_people() {
 	}
 }
 
+/**
+ * Grade oficial dos modulos do curso, conforme o roteiro. Cada item vira um
+ * post do CPT "ppf_module" com os campos definidos em inc/cpt-module.php.
+ * "content_items" usa uma linha por bullet (convertido em <li> no template).
+ */
+function ppf_modules_seed_data() {
+	return array(
+		array(
+			'title' => 'A Conexao Pai e Filha',
+			'meta'  => array(
+				'short_description' => 'Entenda por que os pequenos cuidados tambem sao uma forma de presenca, afeto e conexao.',
+				'content_items'     => "A origem e o proposito do Pai de Princesa.\nA importancia da presenca paterna nos detalhes.\nComo os cuidados cotidianos ajudam a fortalecer o vinculo.\nA experiencia real de Rodrigo como pai.\nApresentacao de tudo o que sera aprendido no curso.",
+				'participants'      => 'Prity Santos, Rodrigo Fabbris e participacao da filha de Rodrigo.',
+				'duration_label'    => '8 a 10 minutos.',
+				'is_locked'         => '0',
+			),
+		),
+		array(
+			'title' => 'Cuidados Basicos com o Cabelo Infantil',
+			'meta'  => array(
+				'short_description' => 'Aprenda os cuidados fundamentais para lidar com o cabelo infantil com mais seguranca e tranquilidade.',
+				'content_items'     => "Diferencas basicas entre cabelos lisos, cacheados e crespos.\nComo escolher shampoo, condicionador e finalizador.\nComo desembaracar sem causar dor.\nCuidados com o couro cabeludo.\nFormas adequadas de secagem.\nComo utilizar pentes e escovas.\nDemonstracoes praticas.",
+				'participants'      => 'Prity Santos como professora principal e participacao de crianca modelo autorizada.',
+				'duration_label'    => '15 minutos.',
+				'is_locked'         => '1',
+			),
+		),
+		array(
+			'title' => 'Penteados do Dia a Dia',
+			'meta'  => array(
+				'badge_label'        => 'Com a professora convidada Kimberly.',
+				'short_description'  => 'Aprenda penteados simples e possiveis para escola, passeios e compromissos do cotidiano.',
+				'content_items'      => "Como preparar o cabelo.\nTranca simples.\nCoque pratico.\nRabo de cavalo.\nFinalizacao.\nComo tornar o momento mais tranquilo para a crianca.",
+				'featured_quote'     => 'O mais importante nao e alcancar um resultado perfeito. E o momento que voces vivem juntos.',
+				'participants'       => 'Prity Santos, Kimberly e modelos autorizadas.',
+				'duration_label'     => '25 a 30 minutos.',
+				'is_locked'          => '1',
+				'admin_review_note'  => 'Confirmar se "Kimberly" (professora convidada de penteados e maquiagem) e a mesma pessoa citada como "Kemily" no modulo de autoestima, ou se sao duas profissionais diferentes. Validar grafia antes da publicacao definitiva.',
+			),
+		),
+		array(
+			'title' => 'Autoestima e Beleza Infantil',
+			'meta'  => array(
+				'short_description' => 'Entenda como o cuidado, a atencao e a presenca paterna podem contribuir para a seguranca emocional da crianca.',
+				'content_items'     => "A importancia do vinculo afetivo.\nA presenca paterna na rotina.\nComo gestos de cuidado podem impactar emocionalmente.\nSeguranca emocional.\nAutoconfianca.\nAmor proprio.\nRespeito a personalidade e as preferencias da crianca.\nFortalecimento da relacao entre pai e filha.",
+				'participants'      => 'Rodrigo Fabbris e a psicologa Kemily.',
+				'duration_label'    => '12 minutos.',
+				'is_locked'         => '1',
+				'admin_review_note' => 'Confirmar nome completo, registro profissional e forma correta de apresentacao da psicologa "Kemily" antes da publicacao definitiva. Confirmar tambem se e a mesma pessoa citada como "Kimberly" no modulo de penteados/bonus.',
+			),
+		),
+		array(
+			'title' => 'Moda Infantil Pratica',
+			'meta'  => array(
+				'short_description' => 'Aprenda a participar das escolhas de roupas de maneira simples, confortavel e adequada para cada ocasiao.',
+				'content_items'     => "Combinacao basica de cores.\nComo escolher roupas confortaveis.\nComo combinar pecas.\nUso de acessorios.\nLooks para escola.\nLooks para passeios.\nLooks para festas e eventos.\nComo organizar conjuntos com antecedencia.\nParticipacao do pai nas escolhas da filha.",
+				'participants'      => 'Prity Santos, stylist convidada, Rodrigo Fabbris e participacao da filha de Rodrigo.',
+				'duration_label'    => '10 minutos.',
+				'is_locked'         => '1',
+				'admin_review_note' => 'Confirmar nome e informacoes profissionais da stylist convidada antes da publicacao definitiva.',
+			),
+		),
+		array(
+			'title' => 'Bonus - Maquiagem de Princesa',
+			'meta'  => array(
+				'badge_label'        => 'Bonus',
+				'short_description'  => 'Orientacoes para uma maquiagem infantil leve, ludica e apropriada para ocasioes especiais.',
+				'content_items'      => "Cuidados basicos de seguranca.\nEscolha de produtos adequados para pele infantil.\nAplicacao leve de blush.\nBrilho.\nBatom.\nToque suave de sombra colorida.\nComo respeitar a idade, a vontade e o conforto da crianca.",
+				'participants'       => 'Professora: Kimberly.',
+				'duration_label'     => '10 a 15 minutos.',
+				'notice_text'        => 'O conteudo e destinado a ocasioes especiais, com produtos adequados, supervisao de um responsavel e respeito a vontade da crianca.',
+				'is_locked'          => '1',
+				'admin_review_note'  => 'Confirmar se "Kimberly" e a mesma pessoa citada como "Kemily" no modulo de autoestima, ou se sao duas profissionais diferentes. Validar grafia antes da publicacao definitiva.',
+			),
+		),
+	);
+}
+
 function ppf_seed_modules() {
 	if ( ! empty( get_posts( array( 'post_type' => 'ppf_module', 'posts_per_page' => 1, 'post_status' => 'any' ) ) ) ) {
 		return;
 	}
 
-	$modules = array(
-		array( 'Modulo 1 - Comecando sem medo', 'O que voce realmente precisa saber, como criar uma rotina simples, produtos e acessorios basicos e erros comuns que podem ser evitados.' ),
-		array( 'Modulo 2 - Cabelo sem complicacao', 'Como identificar necessidades basicas do cabelo, desembaracar sem machucar, lavar e secar corretamente, e escolher escova, pente e acessorios.' ),
-		array( 'Modulo 3 - Penteados para o cotidiano', 'Rabo de cavalo, maria-chiquinha, trancas simples, coques basicos e penteados rapidos para escola e passeios.' ),
-		array( 'Modulo 4 - Roupas e ocasioes', 'Como combinar pecas, escolher roupas confortaveis, vestir para escola, passeio, festa e compromissos, e organizar conjuntos com antecedencia.' ),
-		array( 'Modulo 5 - Cuidados para momentos especiais', 'Preparacao para festas, acessorios, cuidados leves de apresentacao e maquiagem infantil leve e adequada, quando necessaria e permitida pelos responsaveis.' ),
-		array( 'Modulo 6 - Presenca que fica', 'Como transformar tarefas em momentos de conexao, incentivar autonomia, ouvir e respeitar as preferencias da filha, e continuar aprendendo em cada fase.' ),
-	);
+	ppf_insert_modules( ppf_modules_seed_data() );
+}
 
+function ppf_insert_modules( $modules ) {
 	foreach ( $modules as $index => $module ) {
 		$post_id = wp_insert_post( array(
-			'post_title'   => $module[0],
-			'post_content' => $module[1],
+			'post_title'   => $module['title'],
 			'post_status'  => 'publish',
 			'post_type'    => 'ppf_module',
 			'menu_order'   => $index,
 		) );
 
 		if ( $post_id && ! is_wp_error( $post_id ) ) {
-			update_post_meta( $post_id, 'is_locked', $index > 0 ? '1' : '0' );
+			foreach ( $module['meta'] as $key => $value ) {
+				update_post_meta( $post_id, $key, $value );
+			}
 		}
 	}
 }
+
+/**
+ * Migracao de conteudo (roteiro oficial do curso): sites que ativaram o tema
+ * antes desta atualizacao ja tinham a grade antiga de 6 modulos e a copy
+ * antiga dos responsaveis publicadas no banco - o seed inicial (acima) so
+ * roda uma vez e nao mexe em conteudo ja existente. Esta funcao roda por
+ * fora desse gate, uma unica vez (controlada por ppf_content_migrated_v3),
+ * e substitui os modulos antigos pelos oficiais + atualiza a copy dos
+ * responsaveis. Nao mexe em fotos/consentimento de imagem ja configurados.
+ */
+function ppf_migrate_content_v3() {
+	if ( get_option( 'ppf_content_migrated_v3' ) ) {
+		return;
+	}
+
+	// Modulos: remove a grade antiga por completo e insere a oficial.
+	$old_modules = get_posts( array(
+		'post_type'      => 'ppf_module',
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+	) );
+	foreach ( $old_modules as $old_module ) {
+		wp_delete_post( $old_module->ID, true );
+	}
+	ppf_insert_modules( ppf_modules_seed_data() );
+
+	// Responsaveis: atualiza titulo/bio/meta preservando a imagem ja enviada.
+	$existing_people = get_posts( array(
+		'post_type'      => 'ppf_person',
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+	) );
+	foreach ( ppf_people_seed_data() as $person ) {
+		foreach ( $existing_people as $existing ) {
+			if ( $existing->post_title !== $person['title'] ) {
+				continue;
+			}
+			wp_update_post( array(
+				'ID'           => $existing->ID,
+				'post_content' => $person['content'],
+			) );
+			foreach ( $person['meta'] as $key => $value ) {
+				update_post_meta( $existing->ID, $key, $value );
+			}
+			break;
+		}
+	}
+
+	update_option( 'ppf_content_migrated_v3', 1 );
+}
+add_action( 'init', 'ppf_migrate_content_v3' );

@@ -39,7 +39,8 @@ function ppf_person_meta_fields() {
 		array( 'key' => 'featured_quote', 'label' => __( 'Frase em destaque', 'pai-de-princesa' ), 'type' => 'textarea' ),
 		array( 'key' => 'instagram_primary', 'label' => __( 'Instagram principal (URL)', 'pai-de-princesa' ), 'type' => 'url' ),
 		array( 'key' => 'instagram_secondary', 'label' => __( 'Instagram secundario / profissional (URL)', 'pai-de-princesa' ), 'type' => 'url' ),
-		array( 'key' => 'cta_label', 'label' => __( 'Texto do botao', 'pai-de-princesa' ), 'type' => 'text', 'help' => __( 'Ex: Conhecer Prity Santos', 'pai-de-princesa' ) ),
+		array( 'key' => 'cta_label', 'label' => __( 'Texto do botao principal', 'pai-de-princesa' ), 'type' => 'text', 'help' => __( 'Ex: Conhecer Prity Santos', 'pai-de-princesa' ) ),
+		array( 'key' => 'secondary_cta_label', 'label' => __( 'Texto do botao secundario', 'pai-de-princesa' ), 'type' => 'text', 'help' => __( 'Ex: Conhecer o Studio Prity Santos. Deixe em branco para usar "Ver perfil profissional".', 'pai-de-princesa' ) ),
 		array(
 			'key'            => 'image_consent_confirmed',
 			'label'          => __( 'Autorizacao de imagem confirmada?', 'pai-de-princesa' ),

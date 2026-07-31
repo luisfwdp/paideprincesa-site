@@ -45,6 +45,30 @@ function ppf_get_options() {
 }
 
 /**
+ * Condicao de lancamento confirmada pelo roteiro oficial: de R$ 997 por
+ * R$ 197. So preenche se o admin ainda nao tiver configurado nada (nunca
+ * sobrescreve um preco ja definido manualmente no painel).
+ */
+function ppf_migrate_launch_price_v1() {
+	if ( get_option( 'ppf_launch_price_migrated_v1' ) ) {
+		return;
+	}
+
+	$options = get_option( 'ppf_options', array() );
+
+	if ( empty( $options['offer_price_original'] ) ) {
+		$options['offer_price_original'] = 'R$ 997,00';
+	}
+	if ( empty( $options['offer_price_promo'] ) ) {
+		$options['offer_price_promo'] = 'R$ 197,00';
+	}
+
+	update_option( 'ppf_options', $options );
+	update_option( 'ppf_launch_price_migrated_v1', 1 );
+}
+add_action( 'init', 'ppf_migrate_launch_price_v1' );
+
+/**
  * URL de checkout ativa no momento: usa o link de campanha enquanto a
  * campanha estiver dentro do prazo configurado, senao cai no checkout
  * padrao da plataforma escolhida (Kiwify ou Greenn).

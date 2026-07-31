@@ -138,9 +138,11 @@ button { font-family: inherit; cursor: pointer; }
 .ppf-section-closing {
 	font-size: 1.2rem;
 	font-family: var(--ppf-font-display);
+	font-style: italic;
 	color: var(--ppf-wine);
 	margin-top: 2rem;
 }
+.ppf-section-closing--center { text-align: center; }
 
 /* ==========================================================================
    Buttons
@@ -418,6 +420,24 @@ button { font-family: inherit; cursor: pointer; }
 	z-index: -1;
 }
 .ppf-hero-media .ppf-media-placeholder { aspect-ratio: 4/5; min-height: unset; }
+.ppf-hero-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 4/5;
+	border-radius: var(--ppf-radius);
+	box-shadow: var(--ppf-shadow);
+	background: radial-gradient(circle at 30% 20%, rgba(199, 161, 90, 0.18), transparent 55%), linear-gradient(155deg, var(--ppf-rose-soft), var(--ppf-blush));
+	color: rgba(127, 23, 50, 0.35);
+}
+.ppf-hero-support {
+	font-family: var(--ppf-font-display);
+	font-style: italic;
+	font-size: 1.05rem;
+	color: var(--ppf-wine);
+	margin-top: -0.5rem;
+	margin-bottom: 1.5rem;
+}
 
 @media (max-width: 900px) {
 	.ppf-hero-inner { grid-template-columns: 1fr; }
@@ -499,6 +519,9 @@ button { font-family: inherit; cursor: pointer; }
    ========================================================================== */
 .ppf-transformation { background: var(--ppf-graphite); color: var(--ppf-ivory); }
 .ppf-transformation .ppf-section-title { color: var(--ppf-ivory); }
+.ppf-transformation .ppf-eyebrow { color: var(--ppf-gold-soft); }
+.ppf-transformation .ppf-section-lead { color: rgba(255, 249, 246, 0.75); }
+.ppf-section-closing--light { color: var(--ppf-gold-soft); }
 .ppf-transformation-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -770,10 +793,75 @@ button { font-family: inherit; cursor: pointer; }
 	padding: 0.3rem 0.6rem;
 	border-radius: 999px;
 }
+.ppf-module-tag {
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	background: linear-gradient(135deg, var(--ppf-gold), var(--ppf-gold-soft));
+	color: var(--ppf-wine);
+	font-size: 0.68rem;
+	font-weight: 800;
+	letter-spacing: 0.02em;
+	padding: 0.3rem 0.6rem;
+	border-radius: 999px;
+	max-width: calc(100% - 1.5rem);
+}
 .ppf-module-body { padding: 1.5rem; }
 .ppf-module-body h3 { font-size: 1.15rem; }
 .ppf-module-body p { font-size: 0.92rem; color: var(--ppf-muted); }
-.ppf-module-meta { display: flex; gap: 1rem; font-size: 0.8rem; font-weight: 700; color: var(--ppf-burgundy); text-transform: uppercase; letter-spacing: 0.03em; }
+.ppf-module-meta { display: flex; gap: 1rem; font-size: 0.8rem; font-weight: 700; color: var(--ppf-burgundy); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.75rem; }
+
+.ppf-module-details { margin-top: 0.5rem; border-top: 1px solid var(--ppf-border); padding-top: 0.75rem; }
+.ppf-module-details summary {
+	cursor: pointer;
+	list-style: none;
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: var(--ppf-burgundy);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+.ppf-module-details summary::-webkit-details-marker { display: none; }
+.ppf-module-details summary::after { content: '+'; font-size: 1.1rem; }
+.ppf-module-details[open] summary::after { content: '\2212'; }
+.ppf-module-content-list { margin: 0.85rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+.ppf-module-content-list li {
+	font-size: 0.85rem;
+	color: var(--ppf-text);
+	padding-left: 1.1rem;
+	position: relative;
+}
+.ppf-module-content-list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.5em;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--ppf-rose);
+}
+.ppf-module-quote {
+	margin: 0.85rem 0 0;
+	padding: 0.65rem 0.85rem;
+	border-left: 3px solid var(--ppf-gold);
+	font-family: var(--ppf-font-display);
+	font-style: italic;
+	font-size: 0.9rem;
+	color: var(--ppf-wine);
+}
+.ppf-module-participants { font-size: 0.82rem; color: var(--ppf-muted); margin: 0.85rem 0 0; }
+.ppf-module-participants strong { color: var(--ppf-text); }
+.ppf-module-notice {
+	font-size: 0.78rem;
+	color: var(--ppf-muted);
+	background: var(--ppf-blush);
+	border-radius: var(--ppf-radius-sm);
+	padding: 0.6rem 0.75rem;
+	margin: 0.85rem 0 0;
+}
 
 @media (max-width: 900px) {
 	.ppf-curriculum-grid { grid-template-columns: repeat(2, 1fr); }

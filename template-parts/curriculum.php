@@ -12,17 +12,22 @@ if ( empty( $modules ) ) {
 <section class="ppf-section ppf-curriculum" id="conteudo">
 	<div class="ppf-container">
 		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'CONTEUDO DO CURSO', 'pai-de-princesa' ); ?></p>
-		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'O que voce vai aprender, modulo a modulo.', 'pai-de-princesa' ); ?></h2>
-		<p class="ppf-section-lead ppf-section-lead--center"><?php esc_html_e( 'Esta e a grade inicial do curso. Os detalhes finais (quantidade exata de aulas e duracao) sao confirmados na area de membros apos a compra.', 'pai-de-princesa' ); ?></p>
+		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'O que voce vai aprender no Pai de Princesa', 'pai-de-princesa' ); ?></h2>
+		<p class="ppf-section-lead ppf-section-lead--center"><?php esc_html_e( 'Conteudo direto, demonstracoes praticas e orientacoes criadas para situacoes reais da rotina entre pai e filha.', 'pai-de-princesa' ); ?></p>
 
 		<div class="ppf-curriculum-grid">
 			<?php foreach ( $modules as $index => $module ) :
-				$lessons_count  = get_post_meta( $module->ID, 'lessons_count', true );
-				$duration_label = get_post_meta( $module->ID, 'duration_label', true );
-				$is_locked      = '1' === get_post_meta( $module->ID, 'is_locked', true );
-				$title_parts    = explode( ' - ', get_the_title( $module ), 2 );
-				$short_label    = isset( $title_parts[1] ) ? $title_parts[1] : get_the_title( $module );
-				$variant        = $index % 6;
+				$short_description = get_post_meta( $module->ID, 'short_description', true );
+				$content_raw        = get_post_meta( $module->ID, 'content_items', true );
+				$content_items       = $content_raw ? array_filter( array_map( 'trim', explode( "\n", $content_raw ) ) ) : array();
+				$participants        = get_post_meta( $module->ID, 'participants', true );
+				$duration_label      = get_post_meta( $module->ID, 'duration_label', true );
+				$badge_label         = get_post_meta( $module->ID, 'badge_label', true );
+				$featured_quote      = get_post_meta( $module->ID, 'featured_quote', true );
+				$notice_text         = get_post_meta( $module->ID, 'notice_text', true );
+				$is_locked           = '1' === get_post_meta( $module->ID, 'is_locked', true );
+				$variant             = $index % 6;
+				$has_details         = ! empty( $content_items ) || $participants || $featured_quote || $notice_text;
 				?>
 				<article class="ppf-module-card js-reveal <?php echo $is_locked ? 'is-locked' : ''; ?>">
 					<div class="ppf-module-cover">
@@ -31,8 +36,11 @@ if ( empty( $modules ) ) {
 						<?php else : ?>
 							<div class="ppf-module-cover-fallback ppf-module-cover-fallback--<?php echo esc_attr( $variant ); ?>" aria-hidden="true">
 								<span class="ppf-module-cover-fallback-number"><?php echo esc_html( str_pad( $index + 1, 2, '0', STR_PAD_LEFT ) ); ?></span>
-								<span class="ppf-module-cover-fallback-label"><?php echo esc_html( $short_label ); ?></span>
+								<span class="ppf-module-cover-fallback-label"><?php echo esc_html( get_the_title( $module ) ); ?></span>
 							</div>
+						<?php endif; ?>
+						<?php if ( $badge_label ) : ?>
+							<span class="ppf-module-tag"><?php echo esc_html( $badge_label ); ?></span>
 						<?php endif; ?>
 						<?php if ( $is_locked ) : ?>
 							<span class="ppf-module-badge">
@@ -43,15 +51,36 @@ if ( empty( $modules ) ) {
 					</div>
 					<div class="ppf-module-body">
 						<h3><?php echo esc_html( get_the_title( $module ) ); ?></h3>
-						<p><?php echo esc_html( $module->post_content ); ?></p>
+						<?php if ( $short_description ) : ?>
+							<p><?php echo esc_html( $short_description ); ?></p>
+						<?php endif; ?>
 						<div class="ppf-module-meta">
-							<?php if ( $lessons_count ) : ?>
-								<span><?php echo esc_html( sprintf( _n( '%d aula', '%d aulas', (int) $lessons_count, 'pai-de-princesa' ), (int) $lessons_count ) ); ?></span>
-							<?php endif; ?>
 							<?php if ( $duration_label ) : ?>
 								<span><?php echo esc_html( $duration_label ); ?></span>
 							<?php endif; ?>
 						</div>
+
+						<?php if ( $has_details ) : ?>
+							<details class="ppf-module-details">
+								<summary><?php esc_html_e( 'Ver o que voce vai aprender', 'pai-de-princesa' ); ?></summary>
+								<?php if ( ! empty( $content_items ) ) : ?>
+									<ul class="ppf-module-content-list">
+										<?php foreach ( $content_items as $item ) : ?>
+											<li><?php echo esc_html( $item ); ?></li>
+										<?php endforeach; ?>
+									</ul>
+								<?php endif; ?>
+								<?php if ( $featured_quote ) : ?>
+									<blockquote class="ppf-module-quote">&ldquo;<?php echo esc_html( $featured_quote ); ?>&rdquo;</blockquote>
+								<?php endif; ?>
+								<?php if ( $participants ) : ?>
+									<p class="ppf-module-participants"><strong><?php esc_html_e( 'Participacoes:', 'pai-de-princesa' ); ?></strong> <?php echo esc_html( $participants ); ?></p>
+								<?php endif; ?>
+								<?php if ( $notice_text ) : ?>
+									<p class="ppf-module-notice"><?php echo esc_html( $notice_text ); ?></p>
+								<?php endif; ?>
+							</details>
+						<?php endif; ?>
 					</div>
 				</article>
 			<?php endforeach; ?>

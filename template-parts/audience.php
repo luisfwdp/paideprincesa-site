@@ -3,14 +3,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $items = array(
-	__( 'E pai solteiro ou divorciado.', 'pai-de-princesa' ),
-	__( 'Divide a guarda da filha.', 'pai-de-princesa' ),
-	__( 'Fica sozinho com a filha em determinados dias.', 'pai-de-princesa' ),
-	__( 'Quer participar mais da rotina.', 'pai-de-princesa' ),
-	__( 'Nunca aprendeu a cuidar de cabelo.', 'pai-de-princesa' ),
-	__( 'Quer ter mais autonomia.', 'pai-de-princesa' ),
-	__( 'Deseja criar lembrancas especiais com a filha.', 'pai-de-princesa' ),
-	__( 'Quer aprender sem julgamentos e sem complicacao.', 'pai-de-princesa' ),
+	__( 'E pai solteiro ou separado.', 'pai-de-princesa' ),
+	__( 'Divide a rotina ou a guarda da filha.', 'pai-de-princesa' ),
+	__( 'Fica sozinho com a filha em alguns dias.', 'pai-de-princesa' ),
+	__( 'Quer participar mais dos cuidados cotidianos.', 'pai-de-princesa' ),
+	__( 'Nunca aprendeu a cuidar de cabelo infantil.', 'pai-de-princesa' ),
+	__( 'Quer saber fazer penteados simples.', 'pai-de-princesa' ),
+	__( 'Deseja ter mais autonomia.', 'pai-de-princesa' ),
+	__( 'Quer aprender sem julgamentos.', 'pai-de-princesa' ),
+	__( 'Deseja construir mais momentos de conexao com a filha.', 'pai-de-princesa' ),
 );
 ?>
 <section class="ppf-section ppf-audience" id="para-quem">
@@ -23,6 +24,6 @@ $items = array(
 			<?php endforeach; ?>
 		</ul>
 
-		<p class="ppf-audience-note"><?php esc_html_e( 'O curso tambem pode ajudar avos, padrastos, responsaveis e outros cuidadores que participam ativamente da rotina de uma menina.', 'pai-de-princesa' ); ?></p>
+		<p class="ppf-audience-note"><?php esc_html_e( 'O conteudo tambem pode ajudar padrastos, avos, tios e outros responsaveis que participam ativamente da rotina de uma menina.', 'pai-de-princesa' ); ?></p>
 	</div>
 </section>

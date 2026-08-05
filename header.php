@@ -9,7 +9,7 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="ppf-skip-link" href="#ppf-main-content"><?php esc_html_e( 'Pular para o conteudo', 'pai-de-princesa' ); ?></a>
+<a class="ppf-skip-link" href="#ppf-main-content"><?php esc_html_e( 'Pular para o conteúdo', 'pai-de-princesa' ); ?></a>
 
 <?php get_template_part( 'template-parts/gtm-noscript' ); ?>
 <?php get_template_part( 'template-parts/campaign-bar' ); ?>

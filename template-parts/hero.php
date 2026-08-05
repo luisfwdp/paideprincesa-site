@@ -7,24 +7,24 @@ $options = ppf_get_options();
 <section class="ppf-hero">
 	<div class="ppf-container ppf-hero-inner">
 		<div class="ppf-hero-content">
-			<p class="ppf-eyebrow"><?php esc_html_e( 'CURSO PRATICO PARA PAIS PRESENTES', 'pai-de-princesa' ); ?></p>
+			<p class="ppf-eyebrow"><?php esc_html_e( 'CURSO PRÁTICO PARA PAIS PRESENTES', 'pai-de-princesa' ); ?></p>
 			<h1 class="ppf-hero-title">
 				<?php esc_html_e( "Quando sua filha disser \u{201C}Pai, arruma meu cabelo?\u{201D},", 'pai-de-princesa' ); ?>
-				<span class="ppf-text-accent"><?php esc_html_e( 'voce vai saber por onde comecar', 'pai-de-princesa' ); ?></span>.
+				<span class="ppf-text-accent"><?php esc_html_e( 'você vai saber por onde começar', 'pai-de-princesa' ); ?></span>.
 			</h1>
-			<p class="ppf-hero-subtitle"><?php esc_html_e( 'Aprenda, passo a passo, a cuidar do cabelo, fazer penteados simples, escolher roupas e participar dos pequenos momentos da rotina da sua filha com mais seguranca, carinho e confianca.', 'pai-de-princesa' ); ?></p>
-			<p class="ppf-hero-support"><?php esc_html_e( 'Talvez ninguem tenha ensinado voce. Mas voce pode aprender.', 'pai-de-princesa' ); ?></p>
+			<p class="ppf-hero-subtitle"><?php esc_html_e( 'Aprenda, passo a passo, a cuidar do cabelo, fazer penteados simples, escolher roupas e participar dos pequenos momentos da rotina da sua filha com mais segurança, carinho e confiança.', 'pai-de-princesa' ); ?></p>
+			<p class="ppf-hero-support"><?php esc_html_e( 'Talvez ninguém tenha ensinado você. Mas você pode aprender.', 'pai-de-princesa' ); ?></p>
 
 			<div class="ppf-hero-ctas">
 				<a <?php echo ppf_checkout_cta_attrs( 'hero_cta_click', 'ppf-btn--pulse' ); ?>>
-					<?php esc_html_e( 'Quero aprender a cuidar com confianca', 'pai-de-princesa' ); ?>
+					<?php esc_html_e( 'Quero aprender a cuidar com confiança', 'pai-de-princesa' ); ?>
 				</a>
 				<a href="#conteudo" class="ppf-btn ppf-btn--ghost">
 					<?php esc_html_e( 'Ver tudo o que vou aprender', 'pai-de-princesa' ); ?>
 				</a>
 			</div>
 
-			<p class="ppf-hero-microcopy"><?php esc_html_e( '5 modulos praticos + bonus', 'pai-de-princesa' ); ?> &bull; <?php esc_html_e( 'Assista pelo celular', 'pai-de-princesa' ); ?> &bull; <?php esc_html_e( 'Aprenda no seu ritmo', 'pai-de-princesa' ); ?></p>
+			<p class="ppf-hero-microcopy"><?php esc_html_e( '5 módulos práticos + bônus', 'pai-de-princesa' ); ?> &bull; <?php esc_html_e( 'Assista pelo celular', 'pai-de-princesa' ); ?> &bull; <?php esc_html_e( 'Aprenda no seu ritmo', 'pai-de-princesa' ); ?></p>
 		</div>
 
 		<div class="ppf-hero-media">

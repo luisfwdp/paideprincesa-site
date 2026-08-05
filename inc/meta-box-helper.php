@@ -4,13 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Helper generico para registrar meta boxes simples (texto, url, textarea,
- * numero, checkbox) em custom post types, sem depender de plugins como ACF.
- * Usado pelos CPTs de responsaveis, FAQ e modulos.
+ * Helper genérico para registrar meta boxes simples (texto, url, textarea,
+ * número, checkbox) em custom post types, sem depender de plugins como ACF.
+ * Usado pelos CPTs de responsáveis, FAQ e módulos.
  *
  * @param string $post_type Post type alvo.
- * @param string $box_id    ID unico da meta box.
- * @param string $title     Titulo exibido no admin.
+ * @param string $box_id    ID único da meta box.
+ * @param string $title     Título exibido no admin.
  * @param array  $fields    Lista de campos: [ 'key' => '', 'label' => '', 'type' => 'text|url|textarea|checkbox|number', 'help' => '' ].
  */
 function ppf_register_meta_box( $post_type, $box_id, $title, $fields ) {

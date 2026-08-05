@@ -62,7 +62,7 @@ ter que manter infraestrutura própria de vídeo/autenticação.
     cpt-faq.php           CPT FAQ
     cpt-module.php        CPT Módulos do curso + meta box
     meta-box-helper.php   helper genérico de meta box (sem ACF)
-    default-content.php   seed de conteúdo inicial (paginas legais, FAQ, responsáveis, módulos)
+    default-content.php   seed de conteúdo inicial (páginas legais, FAQ, responsáveis, módulos)
     template-tags.php     logo, CTA de checkout, WhatsApp
     seo.php                meta tags + JSON-LD
     analytics.php          GTM condicionado ao consentimento de cookies

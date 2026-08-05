@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $items = array(
 	array(
-		'label' => __( 'Conteudo simples e direto', 'pai-de-princesa' ),
+		'label' => __( 'Conteúdo simples e direto', 'pai-de-princesa' ),
 		'icon'  => '<path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5c.83 0 1.5-.67 1.5-1.5v-13Z"/>',
 	),
 	array(
-		'label' => __( 'Demonstracoes praticas', 'pai-de-princesa' ),
+		'label' => __( 'Demonstrações práticas', 'pai-de-princesa' ),
 		'icon'  => '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5Z"/>',
 	),
 	array(

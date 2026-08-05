@@ -5,21 +5,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 $options = ppf_get_options();
 $stack   = array(
 	__( 'Curso completo Pai de Princesa.', 'pai-de-princesa' ),
-	__( '5 modulos principais.', 'pai-de-princesa' ),
-	__( 'Bonus Maquiagem de Princesa.', 'pai-de-princesa' ),
-	__( 'Orientacoes com Prity Santos.', 'pai-de-princesa' ),
-	__( 'Experiencias reais com Rodrigo Fabbris.', 'pai-de-princesa' ),
-	__( 'Participacao de profissionais convidadas.', 'pai-de-princesa' ),
-	__( 'Demonstracoes praticas.', 'pai-de-princesa' ),
+	__( '5 módulos principais.', 'pai-de-princesa' ),
+	__( 'Bônus Maquiagem de Princesa.', 'pai-de-princesa' ),
+	__( 'Orientações com Prity Santos.', 'pai-de-princesa' ),
+	__( 'Experiências reais com Rodrigo Fabbris.', 'pai-de-princesa' ),
+	__( 'Participação de profissionais convidadas.', 'pai-de-princesa' ),
+	__( 'Demonstrações práticas.', 'pai-de-princesa' ),
 	__( 'Acesso pelo celular, tablet ou computador.', 'pai-de-princesa' ),
-	__( 'Conteudo para assistir no seu ritmo.', 'pai-de-princesa' ),
+	__( 'Conteúdo para assistir no seu ritmo.', 'pai-de-princesa' ),
 );
 ?>
 <section class="ppf-section ppf-offer" id="oferta">
 	<div class="ppf-container ppf-container--narrow">
-		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'CONDICAO DE LANCAMENTO', 'pai-de-princesa' ); ?></p>
-		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Comece agora a participar com mais confianca.', 'pai-de-princesa' ); ?></h2>
-		<p class="ppf-section-lead ppf-section-lead--center"><?php esc_html_e( 'Tenha acesso ao conteudo completo do Pai de Princesa e aprenda, no seu ritmo, habilidades que podem fazer diferenca na rotina com sua filha.', 'pai-de-princesa' ); ?></p>
+		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'CONDIÇÃO DE LANÇAMENTO', 'pai-de-princesa' ); ?></p>
+		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Comece agora a participar com mais confiança.', 'pai-de-princesa' ); ?></h2>
+		<p class="ppf-section-lead ppf-section-lead--center"><?php esc_html_e( 'Tenha acesso ao conteúdo completo do Pai de Princesa e aprenda, no seu ritmo, habilidades que podem fazer diferença na rotina com sua filha.', 'pai-de-princesa' ); ?></p>
 
 		<div class="ppf-offer-panel js-reveal">
 			<div class="ppf-offer-blob" aria-hidden="true"></div>
@@ -43,7 +43,7 @@ $stack   = array(
 					<?php endif; ?>
 					<?php if ( ! empty( $options['offer_price_launch'] ) ) : ?>
 						<p class="ppf-offer-price-tier ppf-offer-price-tier--launch">
-							<?php esc_html_e( 'Preco oficial de lancamento:', 'pai-de-princesa' ); ?> <del><?php echo esc_html( $options['offer_price_launch'] ); ?></del>
+							<?php esc_html_e( 'Preço oficial de lançamento:', 'pai-de-princesa' ); ?> <del><?php echo esc_html( $options['offer_price_launch'] ); ?></del>
 						</p>
 					<?php endif; ?>
 					<p class="ppf-offer-price-main"><?php echo ppf_format_price_field( $options['offer_price_promo'] ); ?></p>
@@ -64,7 +64,7 @@ $stack   = array(
 					</a>
 					<p class="ppf-offer-microcopy">
 						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-						<?php esc_html_e( 'Voce sera direcionado para um ambiente seguro de pagamento.', 'pai-de-princesa' ); ?>
+						<?php esc_html_e( 'Você será direcionado para um ambiente seguro de pagamento.', 'pai-de-princesa' ); ?>
 					</p>
 				</div>
 			</div>

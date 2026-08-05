@@ -10,7 +10,7 @@ get_header();
 			</article>
 		<?php endwhile; ?>
 	<?php else : ?>
-		<p><?php esc_html_e( 'Nenhum conteudo encontrado.', 'pai-de-princesa' ); ?></p>
+		<p><?php esc_html_e( 'Nenhum conteúdo encontrado.', 'pai-de-princesa' ); ?></p>
 	<?php endif; ?>
 </div>
 <?php

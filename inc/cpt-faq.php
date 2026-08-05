@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * CPT "Perguntas Frequentes". Titulo = pergunta, editor = resposta.
- * Reordenar arrastando (menu_order) via pagina de listagem do admin.
+ * CPT "Perguntas Frequentes". Título = pergunta, editor = resposta.
+ * Reordenar arrastando (menu_order) via página de listagem do admin.
  */
 function ppf_register_cpt_faq() {
 	register_post_type( 'ppf_faq', array(

@@ -47,7 +47,7 @@
 		} );
 		try {
 			sessionStorage.setItem( STORAGE_KEY, JSON.stringify( stored ) );
-		} catch ( e ) { /* sessionStorage indisponivel: segue sem persistir */ }
+		} catch ( e ) { /* sessionStorage indisponível: segue sem persistir */ }
 		return stored;
 	}
 
@@ -69,7 +69,7 @@
 					}
 				} );
 				link.href = url.toString();
-			} catch ( e ) { /* href invalido (ex: '#oferta') - ignora */ }
+			} catch ( e ) { /* href inválido (ex: '#oferta') - ignora */ }
 		} );
 	}
 
@@ -111,7 +111,7 @@
 	}
 
 	/* --------------------------------------------------------------------
-	 * Analytics: cliques de CTA, WhatsApp, FAQ, responsaveis, oferta visivel
+	 * Analytics: cliques de CTA, WhatsApp, FAQ, responsáveis, oferta visível
 	 * ------------------------------------------------------------------ */
 	function initAnalyticsBindings() {
 		document.querySelectorAll( '.js-checkout-cta' ).forEach( function ( link ) {
@@ -222,7 +222,7 @@
 				if ( consent.analytics || consent.marketing ) {
 					loadGTM( settings.gtmId );
 				}
-			} catch ( e ) { /* cookie corrompido: trata como sem decisao */ }
+			} catch ( e ) { /* cookie corrompido: trata como sem decisão */ }
 			return;
 		}
 
@@ -267,7 +267,7 @@
 	}
 
 	/* --------------------------------------------------------------------
-	 * Header ganha sombra depois de rolar a pagina
+	 * Header ganha sombra depois de rolar a página
 	 * ------------------------------------------------------------------ */
 	function initHeaderScrollState() {
 		var header = document.getElementById( 'ppf-header' );
@@ -283,9 +283,9 @@
 
 	/* --------------------------------------------------------------------
 	 * Reveal ao rolar: elementos marcados com .js-reveal ganham a classe
-	 * .is-visible quando entram na tela, disparando a transicao definida em
-	 * CSS. Respeita prefers-reduced-motion (o CSS zera a transicao nesse caso
-	 * via media query global, entao aqui so cuidamos de mostrar o elemento).
+	 * .is-visible quando entram na tela, disparando a transição definida em
+	 * CSS. Respeita prefers-reduced-motion (o CSS zera a transição nesse caso
+	 * via media query global, então aqui só cuidamos de mostrar o elemento).
 	 * ------------------------------------------------------------------ */
 	function initScrollReveal() {
 		var items = document.querySelectorAll( '.js-reveal' );

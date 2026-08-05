@@ -4,12 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Logo oficial "Pai de Princesa" (extraida da arte fornecida pelo cliente,
- * recortada e exportada em duas variantes de cor - bordo para fundos claros,
- * creme para fundos escuros). Vive em assets/images/brand/ e e usada por
- * padrao em ppf_render_logo() (inc/template-tags.php). Se o admin enviar uma
- * logo propria em Aparencia > Personalizar > Identidade do Site, o
- * has_custom_logo() la tem prioridade sobre esses arquivos.
+ * Logo oficial "Pai de Princesa" (extraída da arte fornecida pelo cliente,
+ * recortada e exportada em duas variantes de cor - bordô para fundos claros,
+ * creme para fundos escuros). Vive em assets/images/brand/ e é usada por
+ * padrão em ppf_render_logo() (inc/template-tags.php). Se o admin enviar uma
+ * logo própria em Aparência > Personalizar > Identidade do Site, o
+ * has_custom_logo() lá tem prioridade sobre esses arquivos.
  */
 function ppf_brand_image_url( $filename ) {
 	return PPF_THEME_URI . '/assets/images/brand/' . $filename;
@@ -20,7 +20,7 @@ function ppf_brand_image_path( $filename ) {
 }
 
 /**
- * Copia um arquivo de imagem do tema para a biblioteca de midia do
+ * Copia um arquivo de imagem do tema para a biblioteca de mídia do
  * WordPress e retorna o ID do anexo criado. Usado apenas para o favicon
  * (Site Icon), que precisa ser um anexo de verdade para o WordPress gerar
  * os tamanhos usados em aba do navegador, PWA e apple-touch-icon.
@@ -63,7 +63,7 @@ function ppf_import_theme_image_as_attachment( $relative_path, $title ) {
 }
 
 /**
- * Define o favicon (Site Icon) automaticamente na ativacao do tema, usando
+ * Define o favicon (Site Icon) automaticamente na ativação do tema, usando
  * a logo oficial, caso nenhum favicon tenha sido configurado ainda.
  */
 function ppf_seed_brand_assets() {
@@ -74,7 +74,7 @@ function ppf_seed_brand_assets() {
 	if ( ! get_option( 'site_icon' ) ) {
 		$icon_id = ppf_import_theme_image_as_attachment(
 			'assets/images/brand/site-icon-512.png',
-			'Pai de Princesa - icone do site'
+			'Pai de Princesa - ícone do site'
 		);
 		if ( $icon_id ) {
 			update_option( 'site_icon', $icon_id );
@@ -85,9 +85,9 @@ function ppf_seed_brand_assets() {
 }
 add_action( 'after_switch_theme', 'ppf_seed_brand_assets' );
 /*
- * Tambem em admin_init: sites que ja tinham o tema ativo antes desta
- * funcionalidade existir nao disparam after_switch_theme so por causa de um
- * git pull. Isso garante que o favicon seja configurado no proximo acesso ao
+ * Também em admin_init: sites que já tinham o tema ativo antes desta
+ * funcionalidade existir não disparam after_switch_theme só por causa de um
+ * git pull. Isso garante que o favicon seja configurado no próximo acesso ao
  * wp-admin, sem precisar reativar o tema manualmente.
  */
 add_action( 'admin_init', 'ppf_seed_brand_assets' );

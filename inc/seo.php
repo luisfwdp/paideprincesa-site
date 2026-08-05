@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function ppf_meta_description() {
-	return __( 'Aprenda cuidados com cabelo, penteados, roupas e rotina para participar da vida da sua filha com mais confianca, carinho e autonomia.', 'pai-de-princesa' );
+	return __( 'Aprenda cuidados com cabelo, penteados, roupas e rotina para participar da vida da sua filha com mais confiança, carinho e autonomia.', 'pai-de-princesa' );
 }
 
 function ppf_print_head_meta() {
@@ -21,7 +21,7 @@ function ppf_print_head_meta() {
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Pai de Princesa" />
-	<meta property="og:title" content="Pai de Princesa | Curso pratico para pais presentes" />
+	<meta property="og:title" content="Pai de Princesa | Curso prático para pais presentes" />
 	<meta property="og:description" content="<?php echo esc_attr( $description ); ?>" />
 	<meta property="og:url" content="<?php echo esc_url( $url ); ?>" />
 	<?php if ( $image ) : ?>
@@ -29,7 +29,7 @@ function ppf_print_head_meta() {
 	<?php endif; ?>
 
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Pai de Princesa | Curso pratico para pais presentes" />
+	<meta name="twitter:title" content="Pai de Princesa | Curso prático para pais presentes" />
 	<meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>" />
 	<?php if ( $image ) : ?>
 		<meta name="twitter:image" content="<?php echo esc_url( $image ); ?>" />
@@ -97,8 +97,8 @@ function ppf_print_structured_data() {
 	}
 
 	/*
-	 * Course/Offer schema so e emitido quando o preco promocional esta
-	 * configurado no painel - evitamos publicar dados de oferta nao
+	 * Course/Offer schema só é emitido quando o preço promocional está
+	 * configurado no painel - evitamos publicar dados de oferta não
 	 * confirmados nos resultados de busca.
 	 */
 	if ( ! empty( $options['offer_price_promo'] ) ) {
@@ -126,8 +126,8 @@ function ppf_print_structured_data() {
 add_action( 'wp_head', 'ppf_print_structured_data', 3 );
 
 /**
- * Robots.txt e sitemap.xml ja sao gerados nativamente pelo WordPress (desde
- * a 5.5, em /wp-sitemap.xml). Nao recriamos essa infraestrutura aqui - para
- * SEO avancado (breadcrumbs ricos, controle fino de robots por pagina),
+ * Robots.txt e sitemap.xml já são gerados nativamente pelo WordPress (desde
+ * a 5.5, em /wp-sitemap.xml). Não recriamos essa infraestrutura aqui - para
+ * SEO avançado (breadcrumbs ricos, controle fino de robots por página),
  * recomenda-se instalar Yoast SEO ou Rank Math (ver README).
  */

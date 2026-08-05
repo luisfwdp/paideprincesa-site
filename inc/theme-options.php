@@ -5,9 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Painel "Pai de Princesa" em wp-admin: centraliza tudo que muda com
- * frequencia e nao deveria exigir um dev - links de checkout, WhatsApp,
+ * frequência e não deveria exigir um dev - links de checkout, WhatsApp,
  * datas de campanha, dados da oferta, GTM e a foto do hero. Guardado como
- * um unico option serializado (ppf_options) para simplificar migracao/backup.
+ * um único option serializado (ppf_options) para simplificar migração/backup.
  */
 
 function ppf_option_defaults() {
@@ -18,11 +18,11 @@ function ppf_option_defaults() {
 		'campaign_checkout_url'    => '',
 		'campaign_ends_at'         => '',
 		'campaign_banner_enabled'  => '0',
-		'campaign_banner_text'     => 'Condicao especial de lancamento por tempo limitado.',
+		'campaign_banner_text'     => 'Condição especial de lançamento por tempo limitado.',
 		'member_area_url'          => '',
 		'whatsapp_enabled'         => '1',
 		'whatsapp_number'          => '',
-		'whatsapp_message'         => 'Ola! Tenho uma duvida sobre o curso Pai de Princesa.',
+		'whatsapp_message'         => 'Olá! Tenho uma dúvida sobre o curso Pai de Princesa.',
 		'support_email'            => '',
 		'gtm_id'                   => '',
 		'clarity_id'               => '',
@@ -47,12 +47,12 @@ function ppf_get_options() {
 }
 
 /**
- * Condicao de lancamento confirmada: preco cheio R$ 497, preco oficial de
- * lancamento R$ 297, oferta especial R$ 197 (sem contador de vagas - ver
- * decisao no historico do projeto: nao exibimos quantidade "restante" de
- * vagas porque o checkout e externo e o site nao tem como contar vendas de
- * verdade). So sobrescreve campos que ainda estao vazios ou com o valor
- * anterior desta mesma migracao automatica - nunca um preco editado a mao.
+ * Condição de lançamento confirmada: preço cheio R$ 497, preço oficial de
+ * lançamento R$ 297, oferta especial R$ 197 (sem contador de vagas - ver
+ * decisão no histórico do projeto: não exibimos quantidade "restante" de
+ * vagas porque o checkout é externo e o site não tem como contar vendas de
+ * verdade). Só sobrescreve campos que ainda estão vazios ou com o valor
+ * anterior desta mesma migração automática - nunca um preço editado à mão.
  */
 function ppf_migrate_launch_price_v2() {
 	if ( get_option( 'ppf_launch_price_migrated_v2' ) ) {
@@ -77,9 +77,35 @@ function ppf_migrate_launch_price_v2() {
 add_action( 'init', 'ppf_migrate_launch_price_v2' );
 
 /**
+ * Corrige a acentuação dos textos padrão salvos em ppf_options (banner de
+ * campanha e mensagem do WhatsApp). Se o admin já salvou o painel de
+ * opções uma vez, esses valores ficaram gravados sem acento no banco - só
+ * corrige se o valor salvo ainda for exatamente o antigo texto sem acento
+ * (nunca sobrescreve um texto que o admin editou de verdade).
+ */
+function ppf_migrate_option_text_accents_v1() {
+	if ( get_option( 'ppf_option_text_accents_migrated_v1' ) ) {
+		return;
+	}
+
+	$options = get_option( 'ppf_options', array() );
+
+	if ( ( $options['campaign_banner_text'] ?? '' ) === 'Condicao especial de lancamento por tempo limitado.' ) {
+		$options['campaign_banner_text'] = 'Condição especial de lançamento por tempo limitado.';
+	}
+	if ( ( $options['whatsapp_message'] ?? '' ) === 'Ola! Tenho uma duvida sobre o curso Pai de Princesa.' ) {
+		$options['whatsapp_message'] = 'Olá! Tenho uma dúvida sobre o curso Pai de Princesa.';
+	}
+
+	update_option( 'ppf_options', $options );
+	update_option( 'ppf_option_text_accents_migrated_v1', 1 );
+}
+add_action( 'init', 'ppf_migrate_option_text_accents_v1' );
+
+/**
  * URL de checkout ativa no momento: usa o link de campanha enquanto a
- * campanha estiver dentro do prazo configurado, senao cai no checkout
- * padrao da plataforma escolhida (Kiwify ou Greenn).
+ * campanha estiver dentro do prazo configurado, senão cai no checkout
+ * padrão da plataforma escolhida (Kiwify ou Greenn).
  */
 function ppf_get_active_checkout_url() {
 	$options = ppf_get_options();
@@ -171,8 +197,8 @@ function ppf_render_options_page() {
 	$options = ppf_get_options();
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Configuracoes - Pai de Princesa', 'pai-de-princesa' ); ?></h1>
-		<p><?php esc_html_e( 'O checkout e a area de membros ficam a cargo da Kiwify ou da Greenn. Aqui voce configura apenas os links e as informacoes que aparecem na pagina de vendas.', 'pai-de-princesa' ); ?></p>
+		<h1><?php esc_html_e( 'Configurações - Pai de Princesa', 'pai-de-princesa' ); ?></h1>
+		<p><?php esc_html_e( 'O checkout e a área de membros ficam a cargo da Kiwify ou da Greenn. Aqui você configura apenas os links e as informações que aparecem na página de vendas.', 'pai-de-princesa' ); ?></p>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'ppf_options_group' ); ?>
 
@@ -185,7 +211,7 @@ function ppf_render_options_page() {
 							<option value="kiwify" <?php selected( $options['checkout_provider'], 'kiwify' ); ?>>Kiwify</option>
 							<option value="greenn" <?php selected( $options['checkout_provider'], 'greenn' ); ?>>Greenn</option>
 						</select>
-						<p class="description"><?php esc_html_e( 'Define qual link de checkout os botoes "Quero aprender" vao usar.', 'pai-de-princesa' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Define qual link de checkout os botões "Quero aprender" vão usar.', 'pai-de-princesa' ); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -197,8 +223,8 @@ function ppf_render_options_page() {
 					<td><input type="url" class="regular-text" id="greenn_checkout_url" name="ppf_options[greenn_checkout_url]" value="<?php echo esc_attr( $options['greenn_checkout_url'] ); ?>" placeholder="https://checkout.greenn.com.br/xxxxxxx" /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="member_area_url"><?php esc_html_e( 'Link da area do aluno (login)', 'pai-de-princesa' ); ?></label></th>
-					<td><input type="url" class="regular-text" id="member_area_url" name="ppf_options[member_area_url]" value="<?php echo esc_attr( $options['member_area_url'] ); ?>" placeholder="https://membros.kiwify.com.br ou area de membros da Greenn" /></td>
+					<th scope="row"><label for="member_area_url"><?php esc_html_e( 'Link da área do aluno (login)', 'pai-de-princesa' ); ?></label></th>
+					<td><input type="url" class="regular-text" id="member_area_url" name="ppf_options[member_area_url]" value="<?php echo esc_attr( $options['member_area_url'] ); ?>" placeholder="https://membros.kiwify.com.br ou área de membros da Greenn" /></td>
 				</tr>
 			</table>
 
@@ -216,7 +242,7 @@ function ppf_render_options_page() {
 					<th scope="row"><label for="campaign_ends_at"><?php esc_html_e( 'Encerramento da campanha', 'pai-de-princesa' ); ?></label></th>
 					<td>
 						<input type="datetime-local" id="campaign_ends_at" name="ppf_options[campaign_ends_at]" value="<?php echo esc_attr( $options['campaign_ends_at'] ); ?>" />
-						<p class="description"><?php esc_html_e( 'A barra e o contador somem automaticamente apos essa data/hora.', 'pai-de-princesa' ); ?></p>
+						<p class="description"><?php esc_html_e( 'A barra e o contador somem automaticamente após essa data/hora.', 'pai-de-princesa' ); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -226,29 +252,29 @@ function ppf_render_options_page() {
 			</table>
 
 			<h2><?php esc_html_e( 'Oferta', 'pai-de-princesa' ); ?></h2>
-			<p class="description"><?php esc_html_e( 'Deixe em branco o que ainda nao foi confirmado: o site mostra "Consulte a condicao disponivel no checkout" nesses campos.', 'pai-de-princesa' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Deixe em branco o que ainda não foi confirmado: o site mostra "Consulte a condição disponível no checkout" nesses campos.', 'pai-de-princesa' ); ?></p>
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row"><label for="offer_price_original"><?php esc_html_e( 'Preco cheio', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_price_original"><?php esc_html_e( 'Preço cheio', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_price_original" name="ppf_options[offer_price_original]" value="<?php echo esc_attr( $options['offer_price_original'] ); ?>" placeholder="R$ 000,00" /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="offer_price_launch"><?php esc_html_e( 'Preco oficial de lancamento', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_price_launch"><?php esc_html_e( 'Preço oficial de lançamento', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_price_launch" name="ppf_options[offer_price_launch]" value="<?php echo esc_attr( $options['offer_price_launch'] ); ?>" placeholder="R$ 000,00" /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="offer_price_promo"><?php esc_html_e( 'Preco da oferta especial (destaque)', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_price_promo"><?php esc_html_e( 'Preço da oferta especial (destaque)', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_price_promo" name="ppf_options[offer_price_promo]" value="<?php echo esc_attr( $options['offer_price_promo'] ); ?>" placeholder="R$ 000,00" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="offer_price_special_label"><?php esc_html_e( 'Texto da oferta especial', 'pai-de-princesa' ); ?></label></th>
 					<td>
 						<input type="text" class="regular-text" id="offer_price_special_label" name="ppf_options[offer_price_special_label]" value="<?php echo esc_attr( $options['offer_price_special_label'] ); ?>" placeholder="Ex: Oferta especial para os primeiros 30 compradores" />
-						<p class="description"><?php esc_html_e( 'Deixe em branco para nao exibir nenhum texto abaixo do preco. So escreva aqui uma condicao que voce realmente vai cumprir - nao exibimos contador de vagas restantes porque o site nao tem como contar vendas de verdade.', 'pai-de-princesa' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Deixe em branco para não exibir nenhum texto abaixo do preço. Só escreva aqui uma condição que você realmente vai cumprir - não exibimos contador de vagas restantes porque o site não tem como contar vendas de verdade.', 'pai-de-princesa' ); ?></p>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="offer_installments_count"><?php esc_html_e( 'Numero de parcelas', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_installments_count"><?php esc_html_e( 'Número de parcelas', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_installments_count" name="ppf_options[offer_installments_count]" value="<?php echo esc_attr( $options['offer_installments_count'] ); ?>" placeholder="12x" /></td>
 				</tr>
 				<tr>
@@ -257,7 +283,7 @@ function ppf_render_options_page() {
 				</tr>
 				<tr>
 					<th scope="row"><label for="offer_access_duration"><?php esc_html_e( 'Prazo de acesso', 'pai-de-princesa' ); ?></label></th>
-					<td><input type="text" id="offer_access_duration" name="ppf_options[offer_access_duration]" value="<?php echo esc_attr( $options['offer_access_duration'] ); ?>" placeholder="Ex: acesso vitalicio, ou 12 meses" /></td>
+					<td><input type="text" id="offer_access_duration" name="ppf_options[offer_access_duration]" value="<?php echo esc_attr( $options['offer_access_duration'] ); ?>" placeholder="Ex: acesso vitalício, ou 12 meses" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="offer_guarantee_text"><?php esc_html_e( 'Texto da garantia', 'pai-de-princesa' ); ?></label></th>
@@ -268,11 +294,11 @@ function ppf_render_options_page() {
 			<h2><?php esc_html_e( 'WhatsApp e suporte', 'pai-de-princesa' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row"><?php esc_html_e( 'Botao flutuante do WhatsApp', 'pai-de-princesa' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'Botão flutuante do WhatsApp', 'pai-de-princesa' ); ?></th>
 					<td><label><input type="checkbox" name="ppf_options[whatsapp_enabled]" value="1" <?php checked( $options['whatsapp_enabled'], '1' ); ?> /> <?php esc_html_e( 'Ativar', 'pai-de-princesa' ); ?></label></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="whatsapp_number"><?php esc_html_e( 'Numero (com DDI e DDD)', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="whatsapp_number"><?php esc_html_e( 'Número (com DDI e DDD)', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="whatsapp_number" name="ppf_options[whatsapp_number]" value="<?php echo esc_attr( $options['whatsapp_number'] ); ?>" placeholder="5541999999999" /></td>
 				</tr>
 				<tr>
@@ -319,8 +345,8 @@ function ppf_render_options_page() {
 			<h2><?php esc_html_e( 'Dados institucionais', 'pai-de-princesa' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row"><label for="company_legal_name"><?php esc_html_e( 'Razao social', 'pai-de-princesa' ); ?></label></th>
-					<td><input type="text" class="regular-text" id="company_legal_name" name="ppf_options[company_legal_name]" value="<?php echo esc_attr( $options['company_legal_name'] ); ?>" placeholder="[RAZAO SOCIAL A CONFIRMAR]" /></td>
+					<th scope="row"><label for="company_legal_name"><?php esc_html_e( 'Razão social', 'pai-de-princesa' ); ?></label></th>
+					<td><input type="text" class="regular-text" id="company_legal_name" name="ppf_options[company_legal_name]" value="<?php echo esc_attr( $options['company_legal_name'] ); ?>" placeholder="[RAZÃO SOCIAL A CONFIRMAR]" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="company_cnpj"><?php esc_html_e( 'CNPJ', 'pai-de-princesa' ); ?></label></th>

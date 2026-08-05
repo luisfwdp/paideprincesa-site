@@ -11,13 +11,13 @@ if ( empty( $people ) ) {
 ?>
 <section class="ppf-section ppf-responsible" id="responsaveis">
 	<div class="ppf-container">
-		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'QUEM ESTA POR TRAS DO PAI DE PRINCESA', 'pai-de-princesa' ); ?></p>
+		<p class="ppf-eyebrow ppf-eyebrow--center"><?php esc_html_e( 'QUEM ESTÁ POR TRÁS DO PAI DE PRINCESA', 'pai-de-princesa' ); ?></p>
 		<h2 class="ppf-section-title ppf-section-title--center"><?php esc_html_e( 'Conhecimento profissional de um lado. A vida real de um pai do outro.', 'pai-de-princesa' ); ?></h2>
 		<p class="ppf-section-lead ppf-section-lead--center">
-			<?php esc_html_e( 'O Pai de Princesa nasceu da uniao de duas experiencias que se completam: a orientacao de quem entende de cuidados com cabelo e beleza e a rotina real de um pai que precisa estar presente todos os dias.', 'pai-de-princesa' ); ?>
+			<?php esc_html_e( 'O Pai de Princesa nasceu da união de duas experiências que se completam: a orientação de quem entende de cuidados com cabelo e beleza e a rotina real de um pai que precisa estar presente todos os dias.', 'pai-de-princesa' ); ?>
 		</p>
 		<p class="ppf-section-lead ppf-section-lead--center">
-			<?php esc_html_e( "Nao e um curso criado apenas com teoria. E um conteudo pensado para os desafios que acontecem antes da escola, nos dias de festa, nas apresentacoes, nos passeios e em todos aqueles momentos em que uma filha olha para o pai e pergunta: 'Pai, voce faz para mim?'", 'pai-de-princesa' ); ?>
+			<?php esc_html_e( "Não é um curso criado apenas com teoria. É um conteúdo pensado para os desafios que acontecem antes da escola, nos dias de festa, nas apresentações, nos passeios e em todos aqueles momentos em que uma filha olha para o pai e pergunta: 'Pai, você faz para mim?'", 'pai-de-princesa' ); ?>
 		</p>
 
 		<div class="ppf-responsible-grid">
@@ -42,7 +42,7 @@ if ( empty( $people ) ) {
 						<?php else : ?>
 							<div class="ppf-media-placeholder" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Foto de %s - a ser adicionada', 'pai-de-princesa' ), get_the_title( $person ) ) ); ?>">
 								<span><?php echo esc_html( get_the_title( $person ) ); ?></span>
-								<small><?php esc_html_e( 'Foto e autorizacao de uso pendentes', 'pai-de-princesa' ); ?></small>
+								<small><?php esc_html_e( 'Foto e autorização de uso pendentes', 'pai-de-princesa' ); ?></small>
 							</div>
 						<?php endif; ?>
 					</div>
@@ -88,8 +88,8 @@ if ( empty( $people ) ) {
 		</div>
 
 		<div class="ppf-responsible-closing">
-			<h3><?php esc_html_e( 'Ela ensina como fazer. Ele mostra que e possivel fazer.', 'pai-de-princesa' ); ?></h3>
-			<p><?php esc_html_e( 'Prity leva o conhecimento tecnico. Rodrigo traz as duvidas, os desafios e as situacoes reais da paternidade. Juntos, eles ajudam a transformar conhecimentos profissionais em orientacoes possiveis para pais com rotinas reais.', 'pai-de-princesa' ); ?></p>
+			<h3><?php esc_html_e( 'Ela ensina como fazer. Ele mostra que é possível fazer.', 'pai-de-princesa' ); ?></h3>
+			<p><?php esc_html_e( 'Prity leva o conhecimento técnico. Rodrigo traz as dúvidas, os desafios e as situações reais da paternidade. Juntos, eles ajudam a transformar conhecimentos profissionais em orientações possíveis para pais com rotinas reais.', 'pai-de-princesa' ); ?></p>
 			<a <?php echo ppf_checkout_cta_attrs( 'responsible_section_cta_click' ); ?>>
 				<?php esc_html_e( 'Quero aprender com eles', 'pai-de-princesa' ); ?>
 			</a>

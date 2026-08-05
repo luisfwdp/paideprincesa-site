@@ -33,7 +33,7 @@ function ppf_theme_setup() {
 
 	register_nav_menus( array(
 		'primary' => __( 'Menu principal', 'pai-de-princesa' ),
-		'footer'  => __( 'Menu do rodape', 'pai-de-princesa' ),
+		'footer'  => __( 'Menu do rodapé', 'pai-de-princesa' ),
 	) );
 
 	add_image_size( 'ppf-portrait', 900, 1125, true );
@@ -43,12 +43,12 @@ add_action( 'after_setup_theme', 'ppf_theme_setup' );
 
 /**
  * front-page.php monta a landing page e o WordPress o usa automaticamente na
- * home, independente da opcao "Sua pagina inicial exibe" em Definicoes >
- * Leitura - MAS somente quando show_on_front = 'posts' (padrao de instalacao
- * nova), ou quando = 'page' com page_on_front apontando para uma pagina
+ * home, independente da opção "Sua página inicial exibe" em Definições >
+ * Leitura - MAS somente quando show_on_front = 'posts' (padrão de instalação
+ * nova), ou quando = 'page' com page_on_front apontando para uma página
  * real. Se show_on_front ficar em 'page' sem page_on_front definido,
  * is_front_page() passa a retornar falso e o WordPress cai no index.php
- * (lista de posts). Aqui garantimos o estado valido em toda carga, sem
+ * (lista de posts). Aqui garantimos o estado válido em toda carga, sem
  * depender de reativar o tema.
  */
 function ppf_ensure_valid_front_page_setting() {
@@ -60,12 +60,12 @@ add_action( 'after_setup_theme', 'ppf_ensure_valid_front_page_setting' );
 
 /**
  * Nunca deixar o WordPress ser indexado acidentalmente enquanto o site estiver em desenvolvimento.
- * O admin controla isso normalmente em Definicoes > Leitura > "Desencorajar mecanismos de busca".
- * Aqui so garantimos um aviso no admin caso essa opcao esteja ativa em producao.
+ * O admin controla isso normalmente em Definições > Leitura > "Desencorajar mecanismos de busca".
+ * Aqui só garantimos um aviso no admin caso essa opção esteja ativa em produção.
  */
 function ppf_admin_notice_search_engine_visibility() {
 	if ( '0' === get_option( 'blog_public' ) ) {
-		echo '<div class="notice notice-warning"><p><strong>Pai de Princesa:</strong> a opcao "Desencorajar mecanismos de busca" esta ativa em Definicoes &rarr; Leitura. O site nao sera indexado pelo Google enquanto isso nao for desmarcado.</p></div>';
+		echo '<div class="notice notice-warning"><p><strong>Pai de Princesa:</strong> a opção "Desencorajar mecanismos de busca" está ativa em Definições &rarr; Leitura. O site não será indexado pelo Google enquanto isso não for desmarcado.</p></div>';
 	}
 }
 add_action( 'admin_notices', 'ppf_admin_notice_search_engine_visibility' );

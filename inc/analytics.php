@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Google Tag Manager so e impresso no <head> quando o visitante ja deu
- * consentimento de analytics/marketing nesta sessao (cookie ppf_cookie_consent
- * gravado pelo banner de LGPD). Em novas visitas sem decisao ainda tomada,
- * o main.js injeta o GTM dinamicamente assim que o consentimento e dado -
- * o script nunca carrega antes da escolha do usuario.
+ * Google Tag Manager só é impresso no <head> quando o visitante já deu
+ * consentimento de analytics/marketing nesta sessão (cookie ppf_cookie_consent
+ * gravado pelo banner de LGPD). Em novas visitas sem decisão ainda tomada,
+ * o main.js injeta o GTM dinamicamente assim que o consentimento é dado -
+ * o script nunca carrega antes da escolha do usuário.
  */
 function ppf_has_analytics_consent() {
 	if ( empty( $_COOKIE['ppf_cookie_consent'] ) ) {

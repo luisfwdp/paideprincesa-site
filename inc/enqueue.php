@@ -41,8 +41,8 @@ function ppf_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'ppf_enqueue_assets' );
 
 /**
- * DM Serif Display / Manrope sao carregadas do Google Fonts por padrao.
- * Para reduzir dependencia externa (LGPD/performance), o dev pode trocar por
+ * DM Serif Display / Manrope são carregadas do Google Fonts por padrão.
+ * Para reduzir dependência externa (LGPD/performance), o dev pode trocar por
  * next/font-style self-hosting baixando os arquivos woff2 para assets/fonts
  * e apontando @font-face em assets/css/style.css.
  */

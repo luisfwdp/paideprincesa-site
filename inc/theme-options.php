@@ -27,7 +27,9 @@ function ppf_option_defaults() {
 		'gtm_id'                   => '',
 		'clarity_id'               => '',
 		'offer_price_original'     => '',
+		'offer_price_launch'       => '',
 		'offer_price_promo'        => '',
+		'offer_price_special_label'=> 'Oferta especial para os primeiros 30 compradores',
 		'offer_installments_count' => '',
 		'offer_installment_value'  => '',
 		'offer_access_duration'    => '',
@@ -45,28 +47,34 @@ function ppf_get_options() {
 }
 
 /**
- * Condicao de lancamento confirmada pelo roteiro oficial: de R$ 997 por
- * R$ 197. So preenche se o admin ainda nao tiver configurado nada (nunca
- * sobrescreve um preco ja definido manualmente no painel).
+ * Condicao de lancamento confirmada: preco cheio R$ 497, preco oficial de
+ * lancamento R$ 297, oferta especial R$ 197 (sem contador de vagas - ver
+ * decisao no historico do projeto: nao exibimos quantidade "restante" de
+ * vagas porque o checkout e externo e o site nao tem como contar vendas de
+ * verdade). So sobrescreve campos que ainda estao vazios ou com o valor
+ * anterior desta mesma migracao automatica - nunca um preco editado a mao.
  */
-function ppf_migrate_launch_price_v1() {
-	if ( get_option( 'ppf_launch_price_migrated_v1' ) ) {
+function ppf_migrate_launch_price_v2() {
+	if ( get_option( 'ppf_launch_price_migrated_v2' ) ) {
 		return;
 	}
 
 	$options = get_option( 'ppf_options', array() );
 
-	if ( empty( $options['offer_price_original'] ) ) {
-		$options['offer_price_original'] = 'R$ 997,00';
+	if ( in_array( $options['offer_price_original'] ?? '', array( '', 'R$ 997,00' ), true ) ) {
+		$options['offer_price_original'] = 'R$ 497,00';
 	}
-	if ( empty( $options['offer_price_promo'] ) ) {
+	if ( empty( $options['offer_price_launch'] ) ) {
+		$options['offer_price_launch'] = 'R$ 297,00';
+	}
+	if ( in_array( $options['offer_price_promo'] ?? '', array( '', 'R$ 197,00' ), true ) ) {
 		$options['offer_price_promo'] = 'R$ 197,00';
 	}
 
 	update_option( 'ppf_options', $options );
-	update_option( 'ppf_launch_price_migrated_v1', 1 );
+	update_option( 'ppf_launch_price_migrated_v2', 1 );
 }
-add_action( 'init', 'ppf_migrate_launch_price_v1' );
+add_action( 'init', 'ppf_migrate_launch_price_v2' );
 
 /**
  * URL de checkout ativa no momento: usa o link de campanha enquanto a
@@ -119,7 +127,9 @@ function ppf_sanitize_options( $input ) {
 	$output['gtm_id']                  = sanitize_text_field( $input['gtm_id'] ?? '' );
 	$output['clarity_id']              = sanitize_text_field( $input['clarity_id'] ?? '' );
 	$output['offer_price_original']    = sanitize_text_field( $input['offer_price_original'] ?? '' );
+	$output['offer_price_launch']      = sanitize_text_field( $input['offer_price_launch'] ?? '' );
 	$output['offer_price_promo']       = sanitize_text_field( $input['offer_price_promo'] ?? '' );
+	$output['offer_price_special_label'] = sanitize_text_field( $input['offer_price_special_label'] ?? '' );
 	$output['offer_installments_count']= sanitize_text_field( $input['offer_installments_count'] ?? '' );
 	$output['offer_installment_value'] = sanitize_text_field( $input['offer_installment_value'] ?? '' );
 	$output['offer_access_duration']   = sanitize_text_field( $input['offer_access_duration'] ?? '' );
@@ -219,12 +229,23 @@ function ppf_render_options_page() {
 			<p class="description"><?php esc_html_e( 'Deixe em branco o que ainda nao foi confirmado: o site mostra "Consulte a condicao disponivel no checkout" nesses campos.', 'pai-de-princesa' ); ?></p>
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row"><label for="offer_price_original"><?php esc_html_e( 'Preco original', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_price_original"><?php esc_html_e( 'Preco cheio', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_price_original" name="ppf_options[offer_price_original]" value="<?php echo esc_attr( $options['offer_price_original'] ); ?>" placeholder="R$ 000,00" /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="offer_price_promo"><?php esc_html_e( 'Preco promocional', 'pai-de-princesa' ); ?></label></th>
+					<th scope="row"><label for="offer_price_launch"><?php esc_html_e( 'Preco oficial de lancamento', 'pai-de-princesa' ); ?></label></th>
+					<td><input type="text" id="offer_price_launch" name="ppf_options[offer_price_launch]" value="<?php echo esc_attr( $options['offer_price_launch'] ); ?>" placeholder="R$ 000,00" /></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="offer_price_promo"><?php esc_html_e( 'Preco da oferta especial (destaque)', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="offer_price_promo" name="ppf_options[offer_price_promo]" value="<?php echo esc_attr( $options['offer_price_promo'] ); ?>" placeholder="R$ 000,00" /></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="offer_price_special_label"><?php esc_html_e( 'Texto da oferta especial', 'pai-de-princesa' ); ?></label></th>
+					<td>
+						<input type="text" class="regular-text" id="offer_price_special_label" name="ppf_options[offer_price_special_label]" value="<?php echo esc_attr( $options['offer_price_special_label'] ); ?>" placeholder="Ex: Oferta especial para os primeiros 30 compradores" />
+						<p class="description"><?php esc_html_e( 'Deixe em branco para nao exibir nenhum texto abaixo do preco. So escreva aqui uma condicao que voce realmente vai cumprir - nao exibimos contador de vagas restantes porque o site nao tem como contar vendas de verdade.', 'pai-de-princesa' ); ?></p>
+					</td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="offer_installments_count"><?php esc_html_e( 'Numero de parcelas', 'pai-de-princesa' ); ?></label></th>

@@ -991,8 +991,10 @@ button { font-family: inherit; cursor: pointer; }
 	padding: 2.25rem 1.75rem;
 	text-align: center;
 }
-.ppf-offer-price-original { color: rgba(255, 249, 246, 0.6); margin-bottom: 0.2rem; }
-.ppf-offer-price-main { font-family: var(--ppf-font-display); font-size: 2.5rem; color: var(--ppf-gold); margin-bottom: 0.2rem; }
+.ppf-offer-price-tier { color: rgba(255, 249, 246, 0.6); margin-bottom: 0.15rem; font-size: 0.9rem; }
+.ppf-offer-price-tier--original { font-size: 0.85rem; }
+.ppf-offer-price-main { font-family: var(--ppf-font-display); font-size: 2.5rem; color: var(--ppf-gold); margin-bottom: 0.2rem; margin-top: 0.4rem; }
+.ppf-offer-price-special { font-size: 0.85rem; font-weight: 700; color: var(--ppf-gold-soft); margin-bottom: 0.5rem; }
 .ppf-offer-installments, .ppf-offer-duration { color: rgba(255, 249, 246, 0.7); font-size: 0.9rem; }
 .ppf-offer-price-card .ppf-btn { margin-top: 1.5rem; width: 100%; }
 .ppf-offer-microcopy {

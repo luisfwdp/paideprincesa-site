@@ -36,10 +36,20 @@ $stack   = array(
 				</div>
 
 				<div class="ppf-offer-price-card">
-					<?php if ( ! empty( $options['offer_price_original'] ) && ! empty( $options['offer_price_promo'] ) ) : ?>
-						<p class="ppf-offer-price-original"><del><?php echo esc_html( $options['offer_price_original'] ); ?></del></p>
+					<?php if ( ! empty( $options['offer_price_original'] ) ) : ?>
+						<p class="ppf-offer-price-tier ppf-offer-price-tier--original">
+							<?php esc_html_e( 'De', 'pai-de-princesa' ); ?> <del><?php echo esc_html( $options['offer_price_original'] ); ?></del>
+						</p>
+					<?php endif; ?>
+					<?php if ( ! empty( $options['offer_price_launch'] ) ) : ?>
+						<p class="ppf-offer-price-tier ppf-offer-price-tier--launch">
+							<?php esc_html_e( 'Preco oficial de lancamento:', 'pai-de-princesa' ); ?> <del><?php echo esc_html( $options['offer_price_launch'] ); ?></del>
+						</p>
 					<?php endif; ?>
 					<p class="ppf-offer-price-main"><?php echo ppf_format_price_field( $options['offer_price_promo'] ); ?></p>
+					<?php if ( ! empty( $options['offer_price_special_label'] ) ) : ?>
+						<p class="ppf-offer-price-special"><?php echo esc_html( $options['offer_price_special_label'] ); ?></p>
+					<?php endif; ?>
 					<?php if ( ! empty( $options['offer_installments_count'] ) || ! empty( $options['offer_installment_value'] ) ) : ?>
 						<p class="ppf-offer-installments">
 							<?php echo esc_html( trim( $options['offer_installments_count'] . ' ' . $options['offer_installment_value'] ) ); ?>

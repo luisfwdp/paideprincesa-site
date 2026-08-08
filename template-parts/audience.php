@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $items = array(
-	__( 'É pai solteiro ou separado.', 'pai-de-princesa' ),
+	__( 'É pai solteiro, separado ou casado proativo.', 'pai-de-princesa' ),
 	__( 'Divide a rotina ou a guarda da filha.', 'pai-de-princesa' ),
 	__( 'Fica sozinho com a filha em alguns dias.', 'pai-de-princesa' ),
 	__( 'Quer participar mais dos cuidados cotidianos.', 'pai-de-princesa' ),

@@ -721,6 +721,25 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
+   Partnership
+   ========================================================================== */
+.ppf-partnership-inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+	align-items: center;
+}
+.ppf-partnership-photo { position: relative; border-radius: var(--ppf-radius); overflow: hidden; }
+.ppf-partnership-image { width: 100%; height: auto; display: block; }
+.ppf-partnership-content h2 { margin-top: 0; margin-bottom: 1.5rem; font-size: 2rem; }
+.ppf-partnership-content p { margin-bottom: 0; line-height: 1.7; }
+
+@media (max-width: 900px) {
+	.ppf-partnership-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+	.ppf-partnership-content h2 { font-size: 1.5rem; }
+}
+
+/* ==========================================================================
    Curriculum
    ========================================================================== */
 .ppf-curriculum-grid {

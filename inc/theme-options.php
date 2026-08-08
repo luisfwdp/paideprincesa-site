@@ -35,6 +35,7 @@ function ppf_option_defaults() {
 		'offer_access_duration'    => '',
 		'offer_guarantee_text'     => '',
 		'hero_photo_id'            => '',
+		'partnership_photo_id'     => '',
 		'company_legal_name'       => '',
 		'company_cnpj'             => '',
 		'instagram_url'            => 'https://www.instagram.com/paideprincesa.oficial/',
@@ -161,6 +162,7 @@ function ppf_sanitize_options( $input ) {
 	$output['offer_access_duration']   = sanitize_text_field( $input['offer_access_duration'] ?? '' );
 	$output['offer_guarantee_text']    = sanitize_textarea_field( $input['offer_guarantee_text'] ?? '' );
 	$output['hero_photo_id']           = ! empty( $input['hero_photo_id'] ) ? absint( $input['hero_photo_id'] ) : '';
+	$output['partnership_photo_id']    = ! empty( $input['partnership_photo_id'] ) ? absint( $input['partnership_photo_id'] ) : '';
 	$output['company_legal_name']      = sanitize_text_field( $input['company_legal_name'] ?? '' );
 	$output['company_cnpj']            = sanitize_text_field( $input['company_cnpj'] ?? '' );
 	$output['instagram_url']           = esc_url_raw( $input['instagram_url'] ?? $defaults['instagram_url'] );
@@ -337,6 +339,21 @@ function ppf_render_options_page() {
 						<p>
 							<button type="button" class="button" id="ppf-hero-photo-select"><?php esc_html_e( 'Selecionar imagem', 'pai-de-princesa' ); ?></button>
 							<button type="button" class="button" id="ppf-hero-photo-remove"><?php esc_html_e( 'Remover', 'pai-de-princesa' ); ?></button>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><?php esc_html_e( 'Foto de parceria (Prity e Rodrigo)', 'pai-de-princesa' ); ?></th>
+					<td>
+						<div id="ppf-partnership-photo-preview">
+							<?php if ( $options['partnership_photo_id'] ) : ?>
+								<?php echo wp_get_attachment_image( $options['partnership_photo_id'], 'medium' ); ?>
+							<?php endif; ?>
+						</div>
+						<input type="hidden" id="partnership_photo_id" name="ppf_options[partnership_photo_id]" value="<?php echo esc_attr( $options['partnership_photo_id'] ); ?>" />
+						<p>
+							<button type="button" class="button" id="ppf-partnership-photo-select"><?php esc_html_e( 'Selecionar imagem', 'pai-de-princesa' ); ?></button>
+							<button type="button" class="button" id="ppf-partnership-photo-remove"><?php esc_html_e( 'Remover', 'pai-de-princesa' ); ?></button>
 						</p>
 					</td>
 				</tr>

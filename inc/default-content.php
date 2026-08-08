@@ -146,12 +146,12 @@ function ppf_people_seed_data() {
 			'title'   => 'Rodrigo Fabbris',
 			'content' => 'Rodrigo Fabbris concilia sua rotina como advogado com os compromissos e os cuidados que fazem parte da vida de um pai presente. Escola, festas, dança, apresentações, eventos e os pequenos desafios cotidianos fazem parte dessa rotina. Como muitos pais, Rodrigo percebeu que amar e querer participar não significa saber automaticamente como fazer tudo. Foi dessa experiência que surgiu uma das bases do Pai de Princesa: criar um caminho para outros pais aprenderem sem constrangimento, sem julgamento e sem dependerem sempre de outra pessoa.',
 			'meta'    => array(
-				'role_label'          => 'Advogado, pai separado e um dos idealizadores do Pai de Princesa',
+				'role_label'          => 'Advogado, pai e um dos idealizadores do Pai de Princesa',
 				'occupation'          => 'Advogado',
 				'city'                => 'Curitiba',
 				'subtitle'            => 'A experiência real de quem concilia trabalho, responsabilidades e paternidade.',
 				'featured_quote'      => 'Presença também se constrói nos pequenos detalhes.',
-				'instagram_primary'   => 'https://www.instagram.com/rodrigofabbris/',
+				'instagram_primary'   => 'https://www.instagram.com/rodrigofabbrisadvogado/',
 				'instagram_secondary' => 'https://www.instagram.com/rodrigofabbrisadvogado/',
 				'cta_label'           => 'Conhecer Rodrigo Fabbris',
 				'secondary_cta_label' => 'Ver perfil profissional',
@@ -364,3 +364,34 @@ function ppf_migrate_content_v4() {
 	update_option( 'ppf_content_migrated_v4', 1 );
 }
 add_action( 'init', 'ppf_migrate_content_v4' );
+
+/**
+ * Atualiza dados de Rodrigo (remove "pai separado" da role_label) e dados de
+ * Prity (Instagram primário). Uma única vez via ppf_content_migrated_v5.
+ */
+function ppf_migrate_content_v5() {
+	if ( get_option( 'ppf_content_migrated_v5' ) ) {
+		return;
+	}
+
+	$existing_people = get_posts( array(
+		'post_type'      => 'ppf_person',
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+	) );
+
+	foreach ( ppf_people_seed_data() as $person ) {
+		foreach ( $existing_people as $existing ) {
+			if ( remove_accents( $existing->post_title ) !== remove_accents( $person['title'] ) ) {
+				continue;
+			}
+			foreach ( $person['meta'] as $key => $value ) {
+				update_post_meta( $existing->ID, $key, $value );
+			}
+			break;
+		}
+	}
+
+	update_option( 'ppf_content_migrated_v5', 1 );
+}
+add_action( 'init', 'ppf_migrate_content_v5' );

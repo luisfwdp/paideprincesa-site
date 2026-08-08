@@ -14,7 +14,7 @@ function ppf_print_head_meta() {
 	$options     = ppf_get_options();
 	$description = ppf_meta_description();
 	$url         = home_url( '/' );
-	$image       = $options['hero_photo_id'] ? wp_get_attachment_image_url( $options['hero_photo_id'], 'large' ) : '';
+	$image       = ppf_brand_image_url( 'logo-horizontal-burgundy.png' );
 	?>
 	<meta name="description" content="<?php echo esc_attr( $description ); ?>" />
 	<link rel="canonical" href="<?php echo esc_url( $url ); ?>" />

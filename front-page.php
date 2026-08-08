@@ -8,6 +8,7 @@ get_header();
 <?php get_template_part( 'template-parts/method' ); ?>
 <?php get_template_part( 'template-parts/audience' ); ?>
 <?php get_template_part( 'template-parts/responsible-people' ); ?>
+<?php get_template_part( 'template-parts/partnership' ); ?>
 <?php get_template_part( 'template-parts/curriculum' ); ?>
 <?php get_template_part( 'template-parts/benefits' ); ?>
 <?php get_template_part( 'template-parts/marquee' ); ?>

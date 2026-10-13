@@ -128,35 +128,34 @@ site depois de marcar **"Autorização de imagem confirmada"** no responsável.
 
 O domínio `paideprincesa.com.br` já tem WordPress instalado. **Não** versionamos o
 WordPress inteiro aqui — só o tema. Os arquivos do tema ficam na raiz deste
-repositório de propósito, então o **Repository Path** deve apontar direto para a
-pasta `wp-content/themes/pai-de-princesa` dentro do site — assim o `git clone` já
-entrega os arquivos no lugar certo, sem passo manual de copiar/mover nada.
+repositório de propósito, para refletir 1:1 a estrutura de um tema WordPress.
 
-1. No GitHub, gere um token (Settings → Developer settings → Fine-grained tokens),
-   com acesso somente a este repositório e permissão `Contents: Read-only`.
-   ⚠️ Se você já gerou um token e ele apareceu em algum print de tela ou foi
-   compartilhado, revogue-o e gere um novo — trate qualquer token exposto como
-   comprometido.
-2. Confirme o caminho absoluto do domínio no cPanel (**Domínios** → coluna
-   "Diretório" do `paideprincesa.com.br`). No seu caso é `/paideprincesa.com.br`
-   dentro do home do usuário, ou seja, o caminho completo é algo como
-   `/home1/SEU_USUARIO/paideprincesa.com.br`.
-3. No cPanel, abra **Git™ Version Control → Create**.
-4. Em **Repository Path**, use exatamente:
-   `/home1/SEU_USUARIO/paideprincesa.com.br/wp-content/themes/pai-de-princesa`
-   (troque `SEU_USUARIO` pelo usuário do cPanel — visível nos caminhos que já
-   apareceram na tela, ex: `trendm93`).
-5. Em **Clone URL**, use:
-   `https://SEU_TOKEN@github.com/luisfwdp/paideprincesa-site.git`
-6. Se você já criou um repositório apontando para outra pasta (ex:
-   `/home1/SEU_USUARIO/repositories/paideprincesa-site`), abra-o em **Manage** e
-   apague-o (isso só remove a cópia local no servidor — não afeta o GitHub) e
-   recrie seguindo os passos 3–5 acima com o caminho correto.
+O repositório é **público** (sem dados sensíveis commitados — credenciais ficam
+sempre fora do Git, via wp-admin), então nenhum token é necessário para clonar.
+
+O **clone do Git** fica numa pasta separada (não a pasta do tema ao vivo), e um
+script `.cpanel.yml` sincroniza os arquivos para dentro de
+`wp-content/themes/pai-de-princesa` a cada deploy — o mesmo padrão usado no projeto
+Corretor Imbatível. Isso evita o erro "directory already contains files" do cPanel
+quando a pasta do tema já tem arquivos (ex: de uma instalação manual anterior).
+
+1. Confirme o caminho absoluto do domínio no cPanel (**Domínios** → coluna
+   "Diretório" do `paideprincesa.com.br`). Ex: `/home1/SEU_USUARIO/paideprincesa.com.br`.
+2. No cPanel, abra **Git™ Version Control → Create**.
+3. Em **Clone URL**, use: `https://github.com/luisfwdp/paideprincesa-site.git`
+   (sem token — o repositório é público).
+4. Em **Repository Path**, use uma pasta separada, por exemplo:
+   `/home1/SEU_USUARIO/repositories/paideprincesa-site`
+5. Em **Repository Name**, use `paideprincesa-site`.
+6. Depois de clonado, abra o repositório em **Manage → Pull or Deploy** e clique em
+   **Deploy HEAD Commit** — isso roda o `.cpanel.yml`, que copia os arquivos do tema
+   para `wp-content/themes/pai-de-princesa` (sem tocar em `wp-config.php` nem em
+   `wp-content/uploads`).
 7. Em **Aparência → Temas** no wp-admin, ative "Pai de Princesa" (só precisa
    ativar uma vez — isso também cria automaticamente as páginas legais, FAQ,
    responsáveis e módulos).
-8. A cada push novo no GitHub, volte no Git Version Control do cPanel, abra o
-   repositório e clique em **Pull or Deploy → Update from Remote**.
+8. A cada push novo no GitHub: no Git Version Control do cPanel, abra o
+   repositório → **Pull or Deploy** → **Update from Remote** → **Deploy HEAD Commit**.
 
 ## Pendências (dependem de informações reais)
 

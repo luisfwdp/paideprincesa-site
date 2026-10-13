@@ -3,4 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home1/trendm93/paideprincesa.com.br/wp-content/themes/pai-de-princesa
     - /bin/mkdir -p $DEPLOYPATH
-    - /usr/bin/rsync -a --delete --exclude='.git' --exclude='.gitignore' --exclude='README.md' --exclude='CLAUDE.md' ./ $DEPLOYPATH/
+    - /usr/bin/rsync -rt --chmod=D755,F644 --delete --exclude='.git' --exclude='.gitignore' --exclude='README.md' --exclude='CLAUDE.md' ./ $DEPLOYPATH/
+    - /bin/chmod -R a+rX $DEPLOYPATH

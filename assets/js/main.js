@@ -348,15 +348,26 @@
 	}
 
 	/* --------------------------------------------------------------------
-	 * Init
+	 * Init: cada função roda isolada - se uma falhar (ex: markup alterado
+	 * por plugin de cache/otimização), as demais continuam normalmente em
+	 * vez de travar o script inteiro (isso já aconteceu: uma falha aqui
+	 * impedia até o banner de cookies de aparecer).
 	 * ------------------------------------------------------------------ */
+	function safeRun( fn ) {
+		try {
+			fn();
+		} catch ( e ) {
+			window.console && console.error( 'ppf-main:', e );
+		}
+	}
+
 	document.addEventListener( 'DOMContentLoaded', function () {
-		applyTrackingParamsToCheckoutLinks();
-		initCampaignCountdown();
-		initAnalyticsBindings();
-		initCookieConsent();
-		initHeaderScrollState();
-		initScrollReveal();
-		pushEvent( 'page_view' );
+		safeRun( applyTrackingParamsToCheckoutLinks );
+		safeRun( initCampaignCountdown );
+		safeRun( initAnalyticsBindings );
+		safeRun( initCookieConsent );
+		safeRun( initHeaderScrollState );
+		safeRun( initScrollReveal );
+		safeRun( function () { pushEvent( 'page_view' ); } );
 	} );
 })();

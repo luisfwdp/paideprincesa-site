@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PPF_THEME_VERSION', '1.0.0' );
+define( 'PPF_THEME_VERSION', '1.0.1' );
 define( 'PPF_THEME_DIR', get_template_directory() );
 define( 'PPF_THEME_URI', get_template_directory_uri() );
 

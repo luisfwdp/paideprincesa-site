@@ -30,6 +30,7 @@ function ppf_enqueue_assets() {
 
 	wp_localize_script( 'ppf-main', 'ppfSettings', array(
 		'gtmId'            => $options['gtm_id'],
+		'metaPixelId'      => $options['meta_pixel_id'],
 		'whatsappNumber'   => $options['whatsapp_number'],
 		'whatsappMessage'  => $options['whatsapp_message'],
 		'whatsappEnabled'  => (bool) $options['whatsapp_enabled'],

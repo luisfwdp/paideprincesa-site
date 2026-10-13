@@ -26,6 +26,7 @@ function ppf_option_defaults() {
 		'support_email'            => '',
 		'gtm_id'                   => '',
 		'clarity_id'               => '',
+		'meta_pixel_id'            => '2257513981770004',
 		'offer_price_original'     => '',
 		'offer_price_launch'       => '',
 		'offer_price_promo'        => '',
@@ -153,6 +154,7 @@ function ppf_sanitize_options( $input ) {
 	$output['support_email']           = sanitize_email( $input['support_email'] ?? '' );
 	$output['gtm_id']                  = sanitize_text_field( $input['gtm_id'] ?? '' );
 	$output['clarity_id']              = sanitize_text_field( $input['clarity_id'] ?? '' );
+	$output['meta_pixel_id']           = sanitize_text_field( $input['meta_pixel_id'] ?? '' );
 	$output['offer_price_original']    = sanitize_text_field( $input['offer_price_original'] ?? '' );
 	$output['offer_price_launch']      = sanitize_text_field( $input['offer_price_launch'] ?? '' );
 	$output['offer_price_promo']       = sanitize_text_field( $input['offer_price_promo'] ?? '' );
@@ -322,6 +324,13 @@ function ppf_render_options_page() {
 				<tr>
 					<th scope="row"><label for="clarity_id"><?php esc_html_e( 'Microsoft Clarity ID (opcional)', 'pai-de-princesa' ); ?></label></th>
 					<td><input type="text" id="clarity_id" name="ppf_options[clarity_id]" value="<?php echo esc_attr( $options['clarity_id'] ); ?>" /></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="meta_pixel_id"><?php esc_html_e( 'Meta Pixel ID (Facebook/Instagram Ads)', 'pai-de-princesa' ); ?></label></th>
+					<td>
+						<input type="text" id="meta_pixel_id" name="ppf_options[meta_pixel_id]" value="<?php echo esc_attr( $options['meta_pixel_id'] ); ?>" placeholder="000000000000000" />
+						<p class="description"><?php esc_html_e( 'Só carrega depois que o visitante aceita cookies de marketing no banner.', 'pai-de-princesa' ); ?></p>
+					</td>
 				</tr>
 			</table>
 

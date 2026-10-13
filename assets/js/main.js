@@ -117,6 +117,9 @@
 		document.querySelectorAll( '.js-checkout-cta' ).forEach( function ( link ) {
 			link.addEventListener( 'click', function () {
 				pushEvent( link.getAttribute( 'data-analytics-event' ) || 'section_cta_click' );
+				if ( window.fbq ) {
+					window.fbq( 'track', 'InitiateCheckout' );
+				}
 			} );
 		} );
 
@@ -209,6 +212,33 @@
 		document.body.insertBefore( noscript, document.body.firstChild );
 	}
 
+	function loadMetaPixel( pixelId ) {
+		if ( ! pixelId || window.fbq ) {
+			return;
+		}
+		/* eslint-disable */
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		/* eslint-enable */
+		window.fbq( 'init', pixelId );
+		window.fbq( 'track', 'PageView' );
+
+		var img = document.createElement( 'img' );
+		img.height = 1;
+		img.width = 1;
+		img.style.display = 'none';
+		img.src = 'https://www.facebook.com/tr?id=' + pixelId + '&ev=PageView&noscript=1';
+		var noscript = document.createElement( 'noscript' );
+		noscript.appendChild( img );
+		document.body.insertBefore( noscript, document.body.firstChild );
+	}
+
 	function initCookieConsent() {
 		var banner = document.getElementById( 'ppf-cookie-consent' );
 		if ( ! banner ) {
@@ -221,6 +251,9 @@
 				var consent = JSON.parse( existing );
 				if ( consent.analytics || consent.marketing ) {
 					loadGTM( settings.gtmId );
+				}
+				if ( consent.marketing ) {
+					loadMetaPixel( settings.metaPixelId );
 				}
 			} catch ( e ) { /* cookie corrompido: trata como sem decisão */ }
 			return;
@@ -244,6 +277,9 @@
 			banner.hidden = true;
 			if ( consent.analytics || consent.marketing ) {
 				loadGTM( settings.gtmId );
+			}
+			if ( consent.marketing ) {
+				loadMetaPixel( settings.metaPixelId );
 			}
 		}
 

@@ -1141,25 +1141,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   WhatsApp floating button
-   ========================================================================== */
-.ppf-whatsapp-button {
-	position: fixed;
-	bottom: 1.5rem;
-	right: 1.5rem;
-	width: 58px;
-	height: 58px;
-	border-radius: 50%;
-	background: #25d366;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.35);
-	z-index: 90;
-}
-
-/* ==========================================================================
    Sticky mobile CTA
    ========================================================================== */
 .ppf-sticky-cta {
@@ -1176,7 +1157,6 @@ button { font-family: inherit; cursor: pointer; }
 .ppf-sticky-cta .ppf-btn { width: 100%; }
 @media (max-width: 782px) {
 	.ppf-sticky-cta { display: block; }
-	.ppf-whatsapp-button { bottom: 5.5rem; }
 	body.ppf-landing { padding-bottom: 4.5rem; }
 }
 

@@ -29,6 +29,17 @@ function ppf_render_logo( $theme = 'dark' ) {
 }
 
 /**
+ * Link do WhatsApp com número e mensagem configurados no painel de opções.
+ */
+function ppf_whatsapp_url() {
+	$options = ppf_get_options();
+	if ( empty( $options['whatsapp_number'] ) ) {
+		return '';
+	}
+	return 'https://wa.me/' . $options['whatsapp_number'] . '?text=' . rawurlencode( $options['whatsapp_message'] );
+}
+
+/**
  * Atributos comuns para os botões de CTA que levam ao checkout. A URL final
  * é resolvida/ajustada em JS (main.js) para preservar UTMs e disparar o
  * evento correto no dataLayer - aqui deixamos apenas os data-attributes.

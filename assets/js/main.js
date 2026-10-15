@@ -111,7 +111,7 @@
 	}
 
 	/* --------------------------------------------------------------------
-	 * Analytics: cliques de CTA, FAQ, responsáveis, oferta visível
+	 * Analytics: cliques de CTA, WhatsApp, FAQ, responsáveis, oferta visível
 	 * ------------------------------------------------------------------ */
 	function initAnalyticsBindings() {
 		document.querySelectorAll( '.js-checkout-cta' ).forEach( function ( link ) {
@@ -122,6 +122,13 @@
 				}
 			} );
 		} );
+
+		var whatsapp = document.querySelector( '.js-whatsapp-cta' );
+		if ( whatsapp ) {
+			whatsapp.addEventListener( 'click', function () {
+				pushEvent( 'whatsapp_click' );
+			} );
+		}
 
 		document.querySelectorAll( '.js-faq-item' ).forEach( function ( item ) {
 			item.addEventListener( 'toggle', function () {
